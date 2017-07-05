@@ -15,4 +15,12 @@ export class LoginComponent {
   loginWithGoogle() {
     this.as.loginWithGoogle();
   }
+
+  loginWithFacebook() {
+    this.as.loginWithFacebook();
+  }
+
+  loginWithTwitter() {
+    this.as.loginWithTwitter();
+  }
 }

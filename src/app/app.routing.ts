@@ -3,9 +3,11 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { SignoutComponent } from './signout/signout.component';
 import { AboutComponent } from './about/about.component';
 import { LenderComponent } from './lender/lender.component';
 import { FaqComponent } from './faq/faq.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 
@@ -27,6 +29,12 @@ const appRouters: Routes = [
     },
 
     {
+        path: 'signout',
+        component: SignoutComponent
+    },
+
+
+    {
         path: 'about',
         component: AboutComponent
     },
@@ -34,6 +42,11 @@ const appRouters: Routes = [
     {
         path: 'faq',
         component: FaqComponent
+    },
+
+    {
+        path: 'dashboard',
+        component: DashboardComponent
     }
 ];
 

@@ -5,11 +5,13 @@ import { AngularFireModule} from 'angularfire2';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
+import { SignoutComponent } from './signout/signout.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { FaqComponent } from './faq/faq.component';
 import { LenderComponent } from './lender/lender.component';
 import { AboutComponent } from './about/about.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AuthService } from './services/auth.service';
@@ -30,10 +32,12 @@ export const firebaseConfig = {
     AppComponent,
     HomeComponent,
     LoginComponent,
+    SignoutComponent,
     LenderComponent,
     AboutComponent,
     FaqComponent,
-    NavbarComponent
+    NavbarComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
