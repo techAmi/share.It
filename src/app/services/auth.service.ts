@@ -4,28 +4,42 @@ import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
 import * as firebase from 'firebase/app';
 
+import { GlobalEventsManagerService } from './global.event.manager.service';
+
 @Injectable()
 
 export class AuthService {
   public user;
+  public isLoggedIn = false;
   constructor(
     public afAuth: AngularFireAuth,
-    private router: Router) {
+    private router: Router,
+    private globalEventManager: GlobalEventsManagerService ) {
   }
 
   getCurrentUser() {
   return this.user = firebase.auth().currentUser;
   }
   authenticate() {
-    return this.afAuth.auth;
+    this.afAuth.authState.subscribe(res => {
+      if (res && res.uid) {
+        console.log('user is logged in');
+        this.isLoggedIn = true;
+      } else {
+        this.isLoggedIn = false;
+      }
+    })
+    return this.isLoggedIn;
   }
 
   getUserInformation () {
     const user = this.getCurrentUser();
     if (user != null) {
+      this.isLoggedIn = true;
       return {
         displayName: user.displayName,
-        email: user.email
+        email: user.email,
+        isLoggedIn: this.isLoggedIn
     }
     }
   }
@@ -33,26 +47,35 @@ export class AuthService {
   loginWithGoogle() {
     const provider = new firebase.auth.GoogleAuthProvider();
     this.afAuth.auth.signInWithPopup(provider).then( data => {
+      this.globalEventManager.switchNavBar(true);
       this.router.navigate(['dashboard']);
-    })
+    });
+    console.log('logging with google');
   }
 
   loginWithFacebook() {
     const provider = new firebase.auth.FacebookAuthProvider();
     this.afAuth.auth.signInWithPopup(provider).then( data => {
       this.router.navigate(['dashboard']);
-    })
+    });
+    console.log('logging with facebook');
   }
 
   loginWithTwitter() {
-    const provider = new firebase.auth.FacebookAuthProvider();
+    const provider = new firebase.auth.TwitterAuthProvider();
     this.afAuth.auth.signInWithPopup(provider).then( data => {
+      console.log(data);
       this.router.navigate(['dashboard']);
-    })
+    },
+    error => {
+      console.log('an error has occured ', error);
+    });
+    console.log('logging with twitter');
   }
 
   logout() {
-    this.afAuth.auth.signOut();
-    this.router.navigate(['']);
+    this.afAuth.auth.signOut().then( data => {
+      this.router.navigate(['']);
+    });
   }
 }

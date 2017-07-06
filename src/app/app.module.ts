@@ -4,17 +4,18 @@ import { NgModule } from '@angular/core';
 import { AngularFireModule} from 'angularfire2';
 
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { SignoutComponent } from './signout/signout.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { HomeComponent } from './home/home.component';
-import { FaqComponent } from './faq/faq.component';
-import { LenderComponent } from './lender/lender.component';
-import { AboutComponent } from './about/about.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { LoginComponent } from './components/login/login.component';
+import { SignoutComponent } from './components/signout/signout.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { HomeComponent } from './components/home/home.component';
+import { FaqComponent } from './components/faq/faq.component';
+import { LenderComponent } from './components/lender/lender.component';
+import { AboutComponent } from './components/about/about.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AuthService } from './services/auth.service';
+import { GlobalEventsManagerService } from './services/global.event.manager.service';
 
 
 import { routing } from './app.routing';
@@ -46,7 +47,8 @@ export const firebaseConfig = {
   ],
   providers: [
     AuthService,
-    AngularFireAuth],
+    AngularFireAuth,
+    GlobalEventsManagerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

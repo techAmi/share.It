@@ -1,0 +1,26 @@
+.jumbotron {
+    background-color: rgba(4,81,121,.8);
+    color: #ffffff;
+    height: 90vh;
+    padding-top: 10em
+}
+
+h1 {
+    color: #ffffff
+}
+
+.panel-body {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.btn-default {
+    height: 4em;
+}
+.well {
+    background-color: transparent
+}
+
+.col-xs-3 {
+   padding-right: 0
+}
