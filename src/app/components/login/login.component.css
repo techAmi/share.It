@@ -7,6 +7,9 @@
 input[type="checkbox"]{
 	margin-left: 0;
 }
+.main {
+	margin-top: 10em;
+}
 
 @media (min-width: 768px) {
     .omb_row-sm-offset-3 div:first-child[class*="col-"] {

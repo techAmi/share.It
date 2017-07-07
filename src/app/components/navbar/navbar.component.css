@@ -3,3 +3,13 @@
     color: #ffffff;
     background-color: #ffffff
 }
+/*.profile-image {
+    position: relative;
+    top: 0;
+    float: left;
+    left: 0;
+}*/
+
+.profile-image {
+    padding: 2px;
+}

@@ -8,6 +8,8 @@ import { AboutComponent } from './components/about/about.component';
 import { LenderComponent } from './components/lender/lender.component';
 import { FaqComponent } from './components/faq/faq.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { MessagesComponent } from './components/messages/messages.component';
+import { AddItemComponent } from './components/addItem/addItem.component';
 
 
 
@@ -49,7 +51,18 @@ const appRouters: Routes = [
     {
         path: 'dashboard',
         component: DashboardComponent
+    },
+
+    {
+        path: 'messages',
+        component: MessagesComponent
+    },
+
+    {
+        path: 'addItem',
+        component: AddItemComponent
     }
+
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(appRouters);

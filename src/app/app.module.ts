@@ -12,6 +12,8 @@ import { FaqComponent } from './components/faq/faq.component';
 import { LenderComponent } from './components/lender/lender.component';
 import { AboutComponent } from './components/about/about.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { MessagesComponent } from './components/messages/messages.component';
+import { AddItemComponent } from './components/addItem/addItem.component';
 
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AuthService } from './services/auth.service';
@@ -38,7 +40,9 @@ export const firebaseConfig = {
     AboutComponent,
     FaqComponent,
     NavbarComponent,
-    DashboardComponent
+    DashboardComponent,
+    MessagesComponent,
+    AddItemComponent
   ],
   imports: [
     BrowserModule,

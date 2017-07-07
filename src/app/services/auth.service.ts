@@ -18,8 +18,9 @@ export class AuthService {
   }
 
   getCurrentUser() {
-  return this.user = firebase.auth().currentUser;
+    return this.user = firebase.auth().currentUser;
   }
+
   authenticate() {
     this.afAuth.authState.subscribe(res => {
       if (res && res.uid) {
@@ -35,20 +36,23 @@ export class AuthService {
   getUserInformation () {
     const user = this.getCurrentUser();
     if (user != null) {
+      console.log('logged in user is ', user);
       this.isLoggedIn = true;
       return {
         displayName: user.displayName,
         email: user.email,
+        photoUrl: user.photoURL,
         isLoggedIn: this.isLoggedIn
     }
-    }
+  }
+  return null;
   }
 
   loginWithGoogle() {
     const provider = new firebase.auth.GoogleAuthProvider();
     this.afAuth.auth.signInWithPopup(provider).then( data => {
       this.globalEventManager.switchNavBar(true);
-      this.router.navigate(['dashboard']);
+      this.router.navigate(['']);
     });
     console.log('logging with google');
   }
@@ -56,7 +60,8 @@ export class AuthService {
   loginWithFacebook() {
     const provider = new firebase.auth.FacebookAuthProvider();
     this.afAuth.auth.signInWithPopup(provider).then( data => {
-      this.router.navigate(['dashboard']);
+      this.globalEventManager.switchNavBar(true);
+      this.router.navigate(['']);
     });
     console.log('logging with facebook');
   }
@@ -64,8 +69,9 @@ export class AuthService {
   loginWithTwitter() {
     const provider = new firebase.auth.TwitterAuthProvider();
     this.afAuth.auth.signInWithPopup(provider).then( data => {
+      this.globalEventManager.switchNavBar(true);
       console.log(data);
-      this.router.navigate(['dashboard']);
+      this.router.navigate(['']);
     },
     error => {
       console.log('an error has occured ', error);

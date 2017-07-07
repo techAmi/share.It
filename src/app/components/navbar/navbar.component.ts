@@ -9,6 +9,7 @@ import {GlobalEventsManagerService } from '../../services/global.event.manager.s
 })
 export class NavbarComponent {
   public isLoggedIn: boolean;
+  public profilePhotoUrl: string;
   public switchNavbar = false;
   constructor (
     private as: AuthService,
@@ -18,7 +19,11 @@ export class NavbarComponent {
       if (mode !== null ) {
         this.switchNavbar = mode;
       }
-    })
+      if (this.as.getUserInformation() != null) {
+      this.profilePhotoUrl = this.as.getUserInformation().photoUrl;
+      console.log(this.profilePhotoUrl);
+    }
+    });
   }
 
 }

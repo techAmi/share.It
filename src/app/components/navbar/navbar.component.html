@@ -24,7 +24,7 @@
 </ng-container>
 
 <ng-container *ngIf="switchNavbar">
-  <nav class="navbar navbar-inverse">
+  <nav class="navbar navbar-fixed-top">
     <div class="container-fluid">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
@@ -37,13 +37,18 @@
       </div>
 
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+        <ul class="nav navbar-nav navbar-right profile-image">
+          <li> <img [src]="profilePhotoUrl" alt="..." class="img-circle img-responsive" style="height: 50px; width: 50px"></li>
+        </ul>
         <ul class="nav navbar-nav navbar-right">
           <li><a  routerLink="/lender">WHY LEND</a></li>
-          <li><a  routerLink="/faq">DASHBOARD</a></li>
-          <li><a  routerLink="/about">MESSAGES</a></li>
-          <li><a  routerLink="/login">ADD ITEM</a></li>
+          <li><a  routerLink="/dashboard">DASHBOARD</a></li>
+          <li><a  routerLink="/messages">MESSAGES</a></li>
+          <li><a  routerLink="/addItem">ADD ITEM</a></li>
+          <li></li>
         </ul>
         <!--TODO: add a user icon and a user menu (account actions like Profile, account, refferals, my items and logout)-->
+        
       </div>
     </div>
   </nav>
