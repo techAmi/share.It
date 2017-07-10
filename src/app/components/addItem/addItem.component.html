@@ -1,5 +1,71 @@
 <div class="main">
   <div class="container">
-    <h1>Add Item</h1>
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <h4> Item Details </h4>
+            <!--First step form-->
+            <ng-container *ngIf="!toNextStep">
+              <p class="text-muted">Step 1 of 2</p>
+              <!--step one form-->
+              <form [formGroup]="addItemStep1Form">
+                <!--Item name-->
+                  <div class="form-group">
+                    <label class="control-label text-primary" for="inputLarge">Item Name</label>
+                    <input class="form-control input-lg" type="text" id="inputLarge" placeholder="name your item" formControlName="itemName">
+                  </div>
+                <!--Item original price-->
+                  <div class="form-group">
+                    <label class="control-label text-primary" for="inputLarge">Original Price</label>
+                    <input class="form-control input-lg" type="text" id="inputLarge" placeholder="tell us your item's original price" formControlName="itemOriginalPrice">
+                  </div>
+                  <br>
+                <!--Item category-->
+                  <div class="form-group">
+                    <label for="select" class="control-label text-primary" for="select_category">
+                          Category
+                    </label>
+                      <select class="form-control" id="select_category" formControlName="itemCategory">
+                        <option *ngFor="let category of categories" [selected]="categories.name == 'Other'" >{{category.name}}</option>
+                      </select>
+                  </div>
+                <!--Item year bought-->
+                  <div class="form-group">
+                    <label class="control-label text-primary" for="select_year_bought">Year bought</label>
+                      <select class="form-control" id="select_year_bought" formControlName="itemYearBought">
+                        <option>Year bought</option>
+                      </select>
+                  </div>
+                <!--Item Condition -->
+                  <div class="form-group">
+                    <label class="control-label text-primary" for="select_condition" >Item Condition</label>
+                      <select class="form-control" id="select_condition" formControlName="itemCondition">
+                        <option *ngFor="let condition of conditions" [selected]="conditions.name == 'New'">{{condition.name}}</option>
+                      </select>
+                  </div>
+                <!--To next step button-->
+                  <button class="btn btn-primary pull-right" (click)="onNextBtnClick()">Next</button>
+              </form>
+            </ng-container>
+
+            <!--Second step form-->
+            <ng-container *ngIf="toNextStep">
+              <p class="text-muted">Step 2 of 2</p>
+            <!--step one form-->
+            <form [formGroup]="addItemStep2Form">
+           
+              
+              <image-upload></image-upload>
+              <!--To submit step button-->
+                <button class="btn btn-primary pull-right" >Submit</button>
+            </form>
+            </ng-container>
+            
+            
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

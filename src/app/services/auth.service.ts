@@ -42,6 +42,7 @@ export class AuthService {
         displayName: user.displayName,
         email: user.email,
         photoUrl: user.photoURL,
+        userUid: user.uid,
         isLoggedIn: this.isLoggedIn
     }
   }
