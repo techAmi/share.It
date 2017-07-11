@@ -1,0 +1,29 @@
+<form ngNoForm>
+  <div class="row">
+    <div class="selectedPhoto">
+      <div class="col-lg-10 col-lg-offset-1 well">
+        <div class="well">
+        <div class="upload-info">
+
+          <div class="upload-image text-right">
+            <div class="clear" id="image-preview">
+              <i class="fa fa-times-circle delete" aria-hidden="true" (click)="delete()"></i>
+              <img [src]="imageUrl">
+            </div>
+          </div>
+
+          <div class="upload-data" id="upload-image">
+            <i class="fa fa-cloud-upload" aria-hidden="true"></i>
+            <input type="file" class="file-input" id="file" name="file" (change)="upload()"/>
+            <p>Click any where to add item image</p>
+          </div>
+          <!-- Upload image data-->
+
+        </div>
+        <!-- Upload info-->
+        
+      </div>
+      </div>
+    </div>
+  </div>
+</form>

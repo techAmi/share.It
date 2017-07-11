@@ -12,7 +12,8 @@ export class FirebaseService {
   conditions: FirebaseListObservable<Condition[]>;
 
   constructor(private _db: AngularFireDatabase) {
-
+    this.items = this._db.list('/items') as
+    FirebaseListObservable<Item[]>;
   }
 
   getCategories() {
@@ -25,6 +26,12 @@ export class FirebaseService {
     this.conditions = this._db.list('/Conditions') as
     FirebaseListObservable<Condition[]>;
     return this.conditions;
+  }
+
+  addItem(item: Item) {
+    console.log('will add a new item', item);
+    return this.items.push(item);
+
   }
 }
 

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnChanges, Inject } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, Inject, ElementRef, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { FirebaseApp } from 'angularfire2';
 import * as firebase from 'firebase';
@@ -20,30 +20,8 @@ interface Image {
 @Component({
   moduleId: module.id,
   selector: 'image-upload',
-  template: `
-    <form ngNoForm>
-      <div class="row">
-                <div class="">
-                  <div class="col-lg-10 text-center well col-lg-offset-1">
-                    <input id="file" name="file" type="file" >
-                    <i class="material-icons md-48">photo_library</i>
-                  </div>
-                </div>
-      </div>
-      <input id="file" name="file" type="file" >
-      <button (click)="upload()" type="button">Upload</button>
-    </form>
-
-    <div style="overflow:hidden;">
-      <div *ngFor="let img of imageList | async"
-      style="position:relative;width:100px;height:100px;float:left;display:flex;justify-content:center;align-items:center;">
-            <img [src]="img.downloadURL | async" style="max-width:100px;max-height:100px;">
-            <button (click)="delete(img)" style="position:absolute;top:2px;right:2px;">[x]</button>
-      </div>
-    </div>
-
-
-  `,
+  templateUrl: 'image-upload.component.html',
+  styleUrls: ['image-upload.component.css']
   })
 
 export class UploadComponent implements OnInit {
@@ -55,17 +33,24 @@ export class UploadComponent implements OnInit {
   private folder: string;
   fileList: FirebaseListObservable<Image[]>;
   ImageList: Observable<Image[]>;
+  public image: Image;
+  public imageUrl = '';
+  public imagePath: string;
+
+  @Output()
+  emitImageUrl: EventEmitter<string> = new EventEmitter<string>();
 
   constructor (private _af: AngularFireDatabase,
                private _router: Router,
-               private _as: AuthService) {
+               private _as: AuthService,
+               private element: ElementRef) {
                 this.folder = _as.getUserInformation().userUid;
   }
   ngOnInit() {
-
+    document.getElementById('image-preview').hidden = true;
   }
 
-  ngOnChanges() {
+  changeListener() {
     console.log ('new values for folder');
     const storage = firebase.storage();
     console.log('storage', storage);
@@ -76,16 +61,23 @@ export class UploadComponent implements OnInit {
     this.ImageList = this.fileList.map( itemList =>
       itemList.map( item => {
         const pathReference = storage.ref(item.path);
+        this.imageUrl = pathReference.toString();
         const result = {$key: item.$key, downloadUrl: pathReference.getDownloadURL(), path: item.path, filename: item.filename};
-        console.log(result);
+        this.image.$key = result.$key;
+        this.image.path = result.path;
+        console.log (result);
+        return result;
       }));
+      console.log(this.ImageList);
   }
 
   upload() {
+    document.getElementById('image-preview').hidden = false;
+    document.getElementById('upload-image').hidden = true;
+    this.changeListener();
     // Create a root reference
-    console.log ('firebase app ', firebase)
+    console.log ('firebase app ', firebase);
     const storageRef = firebase.storage().ref();
-
     const success = false;
 
     // this currently only grabs item 0 refactor it to grab them all
@@ -96,28 +88,46 @@ export class UploadComponent implements OnInit {
             const af = this._af;
             const folder = this.folder;
             const path = `/${this.folder}/${selectedFile.name}`;
+            this.imagePath = path;
+            console.log('path ', path );
+
             const iRef = storageRef.child(path);
+
             iRef.put(selectedFile).then((snapshot) => {
+              this.imageUrl = snapshot.downloadURL;
+              this.emitImageUrl.emit(this.imageUrl);
+              console.log('image url ', this.imageUrl);
+              document.getElementById('upload-image').hidden = true;
                 console.log('Uploaded a blob or file! Now storing the reference at', `/${this.folder}/images/`);
                 af.list(`/${folder}/images/`).push({ path: path, filename: selectedFile.name })
             });
         }
     }
-    delete(image: Image) {
-        const storagePath = image.path;
-        const referencePath = `${this.folder}/images/` + image.$key;
 
-        // Do these as two separate steps so you can still try delete ref if file no longer exists
+    delete() {
+      // create a reference to the storage service, which is used to create
+      // references in storage bucket
+      const storage = firebase.storage();
+      // create a storage reference from firebase storage service
+      const storageRef = storage.ref();
 
-        // Delete from Storage
-        firebase.storage().ref().child(storagePath).delete()
-        .then(
-            () => {},
-            (error) => console.error('Error deleting stored file', storagePath)
-        );
+      const referencePath = this.imagePath;
 
-        // Delete references
-        this._af.object(referencePath).remove()
+      // create a reference to the file to delete
+      const desertRef = storageRef.child(referencePath);
+
+      // delete the file
+      desertRef.delete().then(
+        () => {console.log ('image deleted successfuly')},
+        (error) => { console.log(error)}
+      )
+
+      // the file is deleted but still previewed
+      // hide the previewed image too preview
+      document.getElementById('image-preview').hidden = true;
+      // display the area to uplaod an other image
+      document.getElementById('upload-image').hidden = false;
+
 
     }
   }

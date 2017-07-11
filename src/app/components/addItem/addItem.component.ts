@@ -6,6 +6,8 @@ import { Condition } from '../../models/condition';
 
 import { FirebaseService } from '../../services/firebase.service';
 
+import { UploadComponent } from '../../utils/image-upload.component';
+
 @Component({
   moduleId: module.id,
   selector: 'app-add-item',
@@ -18,6 +20,7 @@ export class AddItemComponent implements OnInit {
   categories: Category[];
   conditions: Condition[];
   newItem: Item;
+  private newItemImageUrl: string;
   toNextStep = false;
 
   public addItemStep1Form: FormGroup;
@@ -51,10 +54,29 @@ export class AddItemComponent implements OnInit {
     });
     // step 2 form group
     this.addItemStep2Form = this._fb.group({
+      itemDescription: new FormControl('', Validators.required),
     });
   }
   onNextBtnClick() {
     console.log(this.addItemStep1Form);
     this.toNextStep = true;
+  }
+
+  imageUrlChange(event) {
+    this.newItemImageUrl = event;
+  }
+
+  onSubmitBtnClick() {
+    this.newItem = {
+      itemCategory: this.addItemStep1Form.controls['itemCategory'].value ,
+      itemName: this.addItemStep1Form.controls['itemName'].value ,
+      itemCondition: this.addItemStep1Form.controls['itemCondition'].value ,
+      itemOriginalPrice: this.addItemStep1Form.controls['itemOriginalPrice'].value ,
+      itemYearBought: this.addItemStep1Form.controls['itemYearBought'].value,
+      itemDescription: this.addItemStep2Form.controls['itemDescription'].value,
+      itemImageUrl: this.newItemImageUrl ,
+    }
+    console.log ('the new added item', this.newItem);
+    this._firebaseService.addItem(this.newItem);
   }
 }
