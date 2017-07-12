@@ -15,7 +15,9 @@ import { AboutComponent } from './components/about/about.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { MessagesComponent } from './components/messages/messages.component';
 import { AddItemComponent } from './components/addItem/addItem.component';
-
+import { UploadSuccessfullComponent } from './components/addItem/upload-successfull.component';
+import { MyItemsComponent } from './components/myItems/my-items.component';
+import { EditItemComponent } from './components/editItem/edit-item.component';
 import { AngularFireAuth } from 'angularfire2/auth';
 
 import { AuthService } from './services/auth.service';
@@ -24,6 +26,8 @@ import { GlobalEventsManagerService } from './services/global.event.manager.serv
 import { UploadComponent } from './utils/image-upload.component';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { routing } from './app.routing';
+
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 export const firebaseConfig = {
     apiKey: 'AIzaSyCU-xOnnDt8Elsbz_3whNAEzcS-BusKTks',
@@ -47,12 +51,16 @@ export const firebaseConfig = {
     DashboardComponent,
     MessagesComponent,
     AddItemComponent,
-    UploadComponent
+    UploadComponent,
+    UploadSuccessfullComponent,
+    MyItemsComponent,
+    EditItemComponent
   ],
   imports: [
     BrowserModule,
     routing,
     FormsModule,
+    ModalModule.forRoot(),
     ReactiveFormsModule,
     AngularFireDatabaseModule,
     AngularFireModule.initializeApp(firebaseConfig)

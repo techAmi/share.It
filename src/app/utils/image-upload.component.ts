@@ -70,11 +70,11 @@ export class UploadComponent implements OnInit {
       }));
       console.log(this.ImageList);
   }
-
+  // upload an item photo
   upload() {
     document.getElementById('image-preview').hidden = false;
     document.getElementById('upload-image').hidden = true;
-    this.changeListener();
+    // this.changeListener();
     // Create a root reference
     console.log ('firebase app ', firebase);
     const storageRef = firebase.storage().ref();
@@ -98,12 +98,13 @@ export class UploadComponent implements OnInit {
               this.emitImageUrl.emit(this.imageUrl);
               console.log('image url ', this.imageUrl);
               document.getElementById('upload-image').hidden = true;
-                console.log('Uploaded a blob or file! Now storing the reference at', `/${this.folder}/images/`);
-                af.list(`/${folder}/images/`).push({ path: path, filename: selectedFile.name })
+                // console.log('Uploaded a blob or file! Now storing the reference at', `/${this.folder}/images/`);
+                // af.list(`/${folder}/images/`).push({ path: path, filename: selectedFile.name })
             });
         }
     }
 
+    // delete an item photo (after it was uploaded)
     delete() {
       // create a reference to the storage service, which is used to create
       // references in storage bucket

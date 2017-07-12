@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Item } from '../../models/item';
 import { Category } from '../../models/category';
@@ -28,7 +29,8 @@ export class AddItemComponent implements OnInit {
 
   constructor(
     private _fb: FormBuilder,
-    private _firebaseService: FirebaseService ) {
+    private _firebaseService: FirebaseService,
+    private _router: Router ) {
   }
   ngOnInit() {
     this._firebaseService.getCategories().
@@ -78,5 +80,6 @@ export class AddItemComponent implements OnInit {
     }
     console.log ('the new added item', this.newItem);
     this._firebaseService.addItem(this.newItem);
+    this._router.navigate(['upload-successfull']);
   }
 }

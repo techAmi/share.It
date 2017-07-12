@@ -15,7 +15,24 @@ export class FirebaseService {
     this.items = this._db.list('/items') as
     FirebaseListObservable<Item[]>;
   }
+  getItems () {
+    this.items = this._db.list('/items') as
+    FirebaseListObservable<Item[]>
+    return this.items;
+  }
 
+  getItem($key: string) {
+    let item: Item;
+    this.items.subscribe(items => {
+      for (const entry of items ){
+        if (entry.$key === $key) {
+          item = entry;
+        }
+      }
+    });
+    console.log(item);
+    return item;
+  }
   getCategories() {
     this.categories = this._db.list('/categories') as
     FirebaseListObservable<Category[]>;
@@ -32,6 +49,10 @@ export class FirebaseService {
     console.log('will add a new item', item);
     return this.items.push(item);
 
+  }
+
+  deleteItem(key: string) {
+    return this.items.remove(key);
   }
 }
 

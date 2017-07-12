@@ -10,7 +10,8 @@ import { FaqComponent } from './components/faq/faq.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { MessagesComponent } from './components/messages/messages.component';
 import { AddItemComponent } from './components/addItem/addItem.component';
-
+import { UploadSuccessfullComponent } from './components/addItem/upload-successfull.component';
+import { MyItemsComponent } from './components/myItems/my-items.component';
 
 
 
@@ -61,6 +62,14 @@ const appRouters: Routes = [
     {
         path: 'addItem',
         component: AddItemComponent
+    },
+    {
+        path: 'upload-successfull',
+        component: UploadSuccessfullComponent
+    },
+    {
+        path: 'my-items',
+        component: MyItemsComponent
     }
 
 ];

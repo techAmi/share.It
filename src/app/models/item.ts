@@ -8,4 +8,6 @@ export interface Item {
   itemYearBought: string;
   itemDescription: string;
   itemImageUrl: string;
+  itemBrand?: string;
+  itemModel?: string
 }
