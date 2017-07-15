@@ -3,6 +3,7 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 import { Item } from '../models/item';
 import { Category } from '../models/category';
 import { Condition } from '../models/condition';
+import * as firebase from 'firebase';
 
 @Injectable()
 
@@ -33,6 +34,7 @@ export class FirebaseService {
     console.log(item);
     return item;
   }
+
   getCategories() {
     this.categories = this._db.list('/categories') as
     FirebaseListObservable<Category[]>;
@@ -47,10 +49,27 @@ export class FirebaseService {
 
   addItem(item: Item) {
     console.log('will add a new item', item);
+    item.createAt = firebase.database.ServerValue.TIMESTAMP;
     return this.items.push(item);
 
   }
 
+  getRecentlyAddedItems() {
+    this.items = this._db.list('/items', {
+      query: {
+        orderByChild: 'createAt',
+        limitToLast: 10
+      }
+    }) as
+    FirebaseListObservable<Item[]>;
+
+    return this.items;
+  }
+
+  updateItem(key: string, updItem: Item) {
+    updItem.createAt = firebase.database.ServerValue.TIMESTAMP;
+    return this.items.update(key, updItem);
+  }
   deleteItem(key: string) {
     return this.items.remove(key);
   }

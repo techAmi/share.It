@@ -48,16 +48,59 @@
     </div>
 </div>
 <div class="container">
-    <div class="row">
-        <h2>Recently added</h2>
+    <div class="row-fluid">
+        <h4>Recently added</h4>
+        <div class="rencently-added">
+        <div *ngFor ="let item of recentlyAddedItems" class="col-lg-3 item"  >
+            <div>
+            <!--Item Image and caption-->
+            <div class="row item-info">
+                <div class="col-lg-12">
+                    <figure class="figure">
+                        <img [src]="item.itemImageUrl" class="figure-img rounded img-responsive" alt="A generic square placeholder image with rounded corners in a figure.">
+                    </figure>
+                    <figcaption class="figure-caption">{{item.itemName}}</figcaption>
+                </div>
+            </div>
+            <!--profile image and user name-->
+            <div class="row profile-info" style="width:90%; right:0; left:30px; top:0; padding: 5px">
+                <div class="col-lg-2">
+                    <!--profile image here-->
+                    <img [src]="item.itemOwner.photoUrl" class="img-circle profile-img">
+                </div>
+                <div class="col-lg-10 profile-name" style="float: right; top: 0; left: 10px; display:none">
+                    <!--profile name here -->
+                    {{item.itemOwner.displayName}}
+                </div>
+            </div>
+           
+            
+            </div>
+        </div>
+        </div>
     </div>
-
-    <div class="row">
-        <h2>Featured items</h2>
-    </div>
-
-    <div class="row">
-        <h2>Categories</h2>
-    </div>
-    
 </div>
+<div class="container">
+    <div class="row-fluid">
+        <h4>Featured items</h4>
+    </div>
+</div>
+<div class="container">
+    <div class="row-fluid">
+        <h4>Categories</h4>
+        <div class="categories">
+            <div class="">
+                 <div *ngFor="let branche of branches" class="col-lg-3 branche" >
+                    <div class="">
+                        <figure class="figure">
+                            <img [src]="branche.image" class="figure-img img-fluid rounded img-responsive" alt="A generic square placeholder image with rounded corners in a figure.">
+                            <figcaption class="figure-caption">{{branche.name}}</figcaption>
+                        </figure>
+                    </div>
+            </div>
+            </div>
+           
+        </div>
+    </div>
+</div>
+        

@@ -24,3 +24,38 @@ h1 {
 .col-xs-3 {
    padding-right: 0
 }
+
+.profile-info{
+   position: absolute;
+    top: 10px;
+    left: 20px;
+    cursor: pointer
+}
+.profile-info:hover{
+    background-color: beige;
+    display: inline-block;
+}
+
+.img-responsive {
+    min-height: 174px;
+}
+
+.img-thumbnail{
+    width: 40px;
+    height: 40px;
+}
+
+.profile-img{
+    width: 40px;
+    height: 40px
+}
+
+.recently-added .categories{
+    overflow: hidden;
+    float: right;
+}
+
+.item,  .branche{
+    margin-bottom: 20px;
+}
+

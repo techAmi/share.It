@@ -1,26 +1,41 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth} from 'angularfire2/auth';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
 import * as firebase from 'firebase/app';
 
 import { GlobalEventsManagerService } from './global.event.manager.service';
 
+import { User } from '../models/user';
 @Injectable()
 
 export class AuthService {
-  public user;
+  public user: User;
+  users: FirebaseListObservable<User[]>;
+  public currentUser;
   public isLoggedIn = false;
+
   constructor(
     public afAuth: AngularFireAuth,
     private router: Router,
-    private globalEventManager: GlobalEventsManagerService ) {
-  }
+    private globalEventManager: GlobalEventsManagerService,
+    private db: AngularFireDatabase ) {
 
+    }
   getCurrentUser() {
-    return this.user = firebase.auth().currentUser;
+    return this.currentUser = firebase.auth().currentUser;
   }
 
+  addUser() {
+    this.user = this.getUserInformation ();
+      console.log(this.user);
+      this.users = this.db.list('/users') as
+      FirebaseListObservable<User[]>;
+      this.users.push(this.user);
+      console.log(this.users);
+    return this.users;
+  }
   authenticate() {
     this.afAuth.authState.subscribe(res => {
       if (res && res.uid) {
@@ -54,6 +69,7 @@ export class AuthService {
     this.afAuth.auth.signInWithPopup(provider).then( data => {
       this.globalEventManager.switchNavBar(true);
       this.router.navigate(['']);
+      this.addUser();
     });
     console.log('logging with google');
   }
@@ -63,6 +79,7 @@ export class AuthService {
     this.afAuth.auth.signInWithPopup(provider).then( data => {
       this.globalEventManager.switchNavBar(true);
       this.router.navigate(['']);
+      this.addUser();
     });
     console.log('logging with facebook');
   }
@@ -73,6 +90,7 @@ export class AuthService {
       this.globalEventManager.switchNavBar(true);
       console.log(data);
       this.router.navigate(['']);
+      this.addUser();
     },
     error => {
       console.log('an error has occured ', error);
