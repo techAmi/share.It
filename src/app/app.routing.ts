@@ -12,7 +12,7 @@ import { MessagesComponent } from './components/messages/messages.component';
 import { AddItemComponent } from './components/addItem/addItem.component';
 import { UploadSuccessfullComponent } from './components/addItem/upload-successfull.component';
 import { MyItemsComponent } from './components/myItems/my-items.component';
-
+import { ItemComponent } from './components/items/item.component';
 
 
 
@@ -70,6 +70,10 @@ const appRouters: Routes = [
     {
         path: 'my-items',
         component: MyItemsComponent
+    },
+    {
+        path: 'items/:id',
+        component: ItemComponent
     }
 
 ];

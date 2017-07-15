@@ -44,8 +44,9 @@ export class EditItemComponent implements OnInit {
       this.currentUser = this._as.getUserInformation();
   }
   ngOnInit() {
-    // console.log(this.itemKey);
+    console.log('item key', this.itemKey);
     this.item = this._firebaseService.getItem(this.itemKey);
+    console.log('this item will be edited ', this.item);
     this._firebaseService.getCategories().subscribe( categories => {
         this.categories = categories;
       }
@@ -69,6 +70,7 @@ export class EditItemComponent implements OnInit {
     this.itemDetailsModal.show();
     this.itemImageModal.show();
     this.item = this._firebaseService.getItem(this.itemKey);
+    console.log('item to edit XXXX', this.item);
   }
 
   onCancelBtnClick() {

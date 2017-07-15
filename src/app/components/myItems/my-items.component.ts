@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from '../../services/firebase.service';
+import { AuthService } from '../../services/auth.service';
+
 import { Item } from '../../models/item';
 
 @Component({
@@ -10,16 +12,17 @@ import { Item } from '../../models/item';
 
 export class MyItemsComponent implements OnInit {
 
-  public items: Item[];
-  constructor (private _fb: FirebaseService) {
-
+  public myItems: Item[];
+  private userId: string;
+  constructor (
+    private _fb: FirebaseService,
+    private _as: AuthService) {
+      this.userId = this._as.getUserInformation().userUid;
+      this.myItems = this._fb.getMyItems(this.userId);
+      console.log('?????? my items', this.myItems);
   }
 
   ngOnInit() {
-    this._fb.getItems().subscribe(items => {
-      this.items = items;
-      console.log(items);
-    });
   }
   editItem(item: Item) {
     console.log('will edit this item: ', item);

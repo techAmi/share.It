@@ -34,9 +34,17 @@ export class AddItemComponent implements OnInit {
     private _firebaseService: FirebaseService,
     private _router: Router,
     private _as: AuthService ) {
+      this.currentUser = {
+      email : this._as.getUserInformation().email,
+      displayName: this._as.getUserInformation().displayName,
+      photoUrl: this._as.getUserInformation().photoUrl,
+      userUid: this._as.getUserInformation().userUid
+    };
+    
   }
   ngOnInit() {
-    this.currentUser = this._as.getUserInformation();
+
+    console.log('current user ', this.currentUser);
     this._firebaseService.getCategories().
     subscribe( categories => {
       this.categories = categories;
@@ -73,6 +81,7 @@ export class AddItemComponent implements OnInit {
   }
 
   onSubmitBtnClick() {
+    console.log('item owner ', this.currentUser);
     this.newItem = {
       itemCategory: this.addItemStep1Form.controls['itemCategory'].value ,
       itemName: this.addItemStep1Form.controls['itemName'].value ,
@@ -81,8 +90,8 @@ export class AddItemComponent implements OnInit {
       itemYearBought: this.addItemStep1Form.controls['itemYearBought'].value,
       itemDescription: this.addItemStep2Form.controls['itemDescription'].value,
       itemImageUrl: this.newItemImageUrl,
-      itemOwner: this.currentUser
     }
+    this.newItem.itemOwner = this.currentUser;
     console.log ('the new added item', this.newItem);
     this._firebaseService.addItem(this.newItem);
     this._router.navigate(['upload-successfull']);

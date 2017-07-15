@@ -1,8 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AngularFireModule} from 'angularfire2';
-import { FormsModule } from '@angular/forms';
+
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -18,6 +17,8 @@ import { AddItemComponent } from './components/addItem/addItem.component';
 import { UploadSuccessfullComponent } from './components/addItem/upload-successfull.component';
 import { MyItemsComponent } from './components/myItems/my-items.component';
 import { EditItemComponent } from './components/editItem/edit-item.component';
+import { ItemComponent } from './components/items/item.component';
+import { FormsModule } from '@angular/forms';
 import { AngularFireAuth } from 'angularfire2/auth';
 
 import { AuthService } from './services/auth.service';
@@ -28,7 +29,8 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { routing } from './app.routing';
 
 import { ModalModule } from 'ngx-bootstrap/modal';
-
+import { DatePickerModule } from 'angular-io-datepicker/src/datepicker/index';
+import { OverlayModule } from 'angular-io-overlay';
 export const firebaseConfig = {
     apiKey: 'AIzaSyCU-xOnnDt8Elsbz_3whNAEzcS-BusKTks',
     authDomain: 'shareit-1cdda.firebaseapp.com',
@@ -54,7 +56,8 @@ export const firebaseConfig = {
     UploadComponent,
     UploadSuccessfullComponent,
     MyItemsComponent,
-    EditItemComponent
+    EditItemComponent,
+    ItemComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +65,10 @@ export const firebaseConfig = {
     FormsModule,
     ModalModule.forRoot(),
     ReactiveFormsModule,
+    OverlayModule,
+    DatePickerModule,
     AngularFireDatabaseModule,
+
     AngularFireModule.initializeApp(firebaseConfig)
   ],
   providers: [

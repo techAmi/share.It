@@ -1,0 +1,65 @@
+<div class="main">
+  <div class="container">
+    <div class="row" *ngIf="item">
+        <div class="col-lg-8">
+            <img [src]="item.itemImageUrl" class="img-responsive"/>
+            <p class="lead"> {{item.itemName}}</p>
+        </div>
+        <div class="col-lg-4">
+            <div class="row">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="col-lg-4">
+                    <img [src]="item.itemOwner.photoUrl"  class="img-responsive img-circle" style="height: 70px; width: 70px"/>
+                </div>
+                <div class="col-lg-6">
+                    <p class="lead ">{{item.itemOwner.displayName}}</p>
+                </div>
+                    </div>
+                </div>
+                
+                
+                
+            </div>
+            <div class="row ">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <p class="lead">PRICE INFORMATION</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                 <date-picker ngModel name="date"></date-picker>
+                            </div>
+                            <div class="col-lg-6">
+                                 <date-picker ngModel name="date"></date-picker>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="panel-footer">
+                        <button class="btn btn-primary btn-lg  btn-block"> Request</button>
+                    </div>
+                </div>
+                <!-- <div class="row">
+                    <p class="lead">Price</p>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        FROM
+                    </div>
+                    <div class="col-lg-6">
+                        TO 
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <button class="btn btn-primary btn-lg"> Request</button>
+                </div> -->
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
