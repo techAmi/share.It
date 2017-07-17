@@ -1,0 +1,12 @@
+.main {
+ margin-top: 10em;
+}
+
+.item{
+    margin-bottom: 20px;
+}
+
+.items {
+    overflow: hidden;
+    float: right;
+}

@@ -1,0 +1,33 @@
+<div class="main">
+    <div class="container">
+        <div class="row ">
+            <div class="col-lg-2">
+                <img [src]="user.photoUrl" class="img-responsive img-circle" style="height: 120px; width:auto"/>
+            </div>
+            <div class="col-lg-4">
+                <div class="row">
+                    <p class="lead"><strong>{{user.displayName}}</strong></p>
+                </div>
+                <div class="row">
+                    <a class="btn btn-default btn-large" (click)="messageBtnClick()">Message</a>
+                </div>
+            </div>
+        </div>
+        <hr>
+    </div>
+    <div class="container">
+        <div class="row-fluid">
+            <h3>Items</h3>
+            <div class="items">
+                <div class="col-lg-3 item" *ngFor="let item of items">
+                    <a routerLink="/items/{{item.$key}}">
+                        <figure class="figure">
+                            <img [src]="item.itemImageUrl" class="figure-img img-fluid rounded img-responsive" style="height: 170px">
+                            <figcaption class="figure-caption lead">{{item.itemName}}</figcaption>
+                        </figure>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

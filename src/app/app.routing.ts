@@ -12,6 +12,7 @@ import { MessagesComponent } from './components/messages/messages.component';
 import { AddItemComponent } from './components/addItem/addItem.component';
 import { UploadSuccessfullComponent } from './components/addItem/upload-successfull.component';
 import { MyItemsComponent } from './components/myItems/my-items.component';
+import { UserDetailsComponent } from './components/userDetails/user-details.component';
 import { ItemComponent } from './components/items/item.component';
 
 
@@ -74,6 +75,11 @@ const appRouters: Routes = [
     {
         path: 'items/:id',
         component: ItemComponent
+    },
+
+    {
+        path: 'user/:id',
+        component: UserDetailsComponent
     }
 
 ];

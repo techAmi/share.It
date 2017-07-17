@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AngularFireModule} from 'angularfire2';
 
+import { AlertModule } from 'ngx-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -10,6 +11,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { FaqComponent } from './components/faq/faq.component';
 import { LenderComponent } from './components/lender/lender.component';
+import { UserDetailsComponent } from './components/userDetails/user-details.component';
 import { AboutComponent } from './components/about/about.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { MessagesComponent } from './components/messages/messages.component';
@@ -27,6 +29,8 @@ import { GlobalEventsManagerService } from './services/global.event.manager.serv
 import { UploadComponent } from './utils/image-upload.component';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { routing } from './app.routing';
+
+import { MomentModule } from 'angular2-moment';
 
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { DatePickerModule } from 'angular-io-datepicker/src/datepicker/index';
@@ -57,12 +61,15 @@ export const firebaseConfig = {
     UploadSuccessfullComponent,
     MyItemsComponent,
     EditItemComponent,
-    ItemComponent
+    ItemComponent,
+    UserDetailsComponent
   ],
   imports: [
     BrowserModule,
     routing,
     FormsModule,
+    MomentModule,
+    AlertModule.forRoot(),
     ModalModule.forRoot(),
     ReactiveFormsModule,
     OverlayModule,

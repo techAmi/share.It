@@ -3,6 +3,7 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 import { Item } from '../models/item';
 import { User } from '../models/user';
 import { Category } from '../models/category';
+import { Request } from '../models/request';
 import { Condition } from '../models/condition';
 import { AuthService } from './auth.service';
 import * as firebase from 'firebase';
@@ -12,6 +13,11 @@ import * as firebase from 'firebase';
 export class FirebaseService {
   items: FirebaseListObservable<Item[]>;
   myItems: Item[];
+  users: FirebaseListObservable<User[]>;
+  requests: FirebaseListObservable<Request[]>;
+  filteredRequests: {
+    incomingRequests: Request[],
+    outcomingRequests: Request[]};
   recentlyAddedItems: FirebaseListObservable<Item[]>;
   categories: FirebaseListObservable<Category[]>;
   conditions: FirebaseListObservable<Condition[]>;
@@ -99,8 +105,46 @@ export class FirebaseService {
   updateItem(key: string, updItem: Item) {
     return this.items.update(key, updItem);
   }
+
   deleteItem(key: string) {
     return this.items.remove(key);
+  }
+
+  getRequests() {
+    this.requests = this._db.list('/requests') as
+    FirebaseListObservable<Request[]>;
+    return this.requests;
+  }
+
+  filterRequests() {
+    this.filteredRequests = {
+      incomingRequests: [],
+      outcomingRequests: []
+    }
+    this.getRequests().subscribe(requests => {
+      requests.forEach( request => {
+        if (request.requestedItem.itemOwner.userUid === this._as.getUserInformation().userUid) {
+          this.filteredRequests.incomingRequests.push(request);
+        }
+      });
+      requests.forEach( request => {
+        if (request.requestFrom.userUid === this._as.getUserInformation().userUid ) {
+          this.filteredRequests.outcomingRequests.push(request);
+        }
+      })
+    });
+    return this.filteredRequests;
+  }
+
+  appendRequest(request: Request) {
+    this.getRequests();
+    return this.requests.push(request);
+  }
+
+  getUsers() {
+    this.users = this._db.list('/users') as
+    FirebaseListObservable<User[]>;
+    return this.users;
   }
 }
 

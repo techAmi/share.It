@@ -62,19 +62,21 @@
                     <figcaption class="figure-caption lead">{{item.itemName}}</figcaption>
                 </div>
             </div>
+            </a>
             <!--profile image and user name-->
-            <div class="row profile-info" style="width:90%; right:0; left:30px; top:0; padding: 5px">
-                <div class="col-lg-2">
-                    <!--profile image here-->
-                    <img [src]="item.itemOwner.photoUrl" class="img-circle profile-img">
+            <a routerLink="/user/{{item.itemOwner.userUid}}">
+                <div class="row profile-info" style="width:90%; right:0; left:30px; top:0; padding: 5px">
+                    
+                        <div class="col-lg-2">
+                            <!--profile image here-->
+                            <img [src]="item.itemOwner.photoUrl" class="img-circle profile-img">
+                        </div>
+                        <div class="col-lg-10 profile-name" style="float: right; top: 0; left: 10px; display:none">
+                            <!--profile name here -->
+                            {{item.itemOwner.displayName}}
+                        </div>
+
                 </div>
-                <div class="col-lg-10 profile-name" style="float: right; top: 0; left: 10px; display:none">
-                    <!--profile name here -->
-                    {{item.itemOwner.displayName}}
-                </div>
-            </div>
-           
-            
             </a>
         </div>
         </div>
@@ -97,7 +99,7 @@
                             <figcaption class="figure-caption lead">{{branche.name}}</figcaption>
                         </figure>
                     </div>
-            </div>
+                </div>
             </div>
            
         </div>

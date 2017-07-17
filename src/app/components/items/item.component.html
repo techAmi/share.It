@@ -17,9 +17,6 @@
                 </div>
                     </div>
                 </div>
-                
-                
-                
             </div>
             <div class="row ">
                 <div class="panel panel-default">
@@ -29,35 +26,40 @@
                                 <p class="lead">PRICE INFORMATION</p>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                 <date-picker ngModel name="date"></date-picker>
+                        <hr>
+                        <form [formGroup]="itemRequestForm">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <p class="lead">BORROWING PERIOD</p>
+                                </div>
                             </div>
-                            <div class="col-lg-6">
-                                 <date-picker ngModel name="date"></date-picker>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <p class="">FROM</p>
+                                    <date-picker formControlName="requestStarts" [showClearButton]="false"></date-picker>
+                                </div>
                             </div>
-                        </div>
+                            <div class="row">
+                                
+                                <div class="col-lg-12">
+                                    <p class="">TO</p>
+                                    <date-picker formControlName="requestEnds" [showClearButton]="false"></date-picker>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <p class="lead "> Write a message to the item owner</p>
+                                    <textarea class="form-control" rows="2" formControlName="message"></textarea>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                     <hr>
                     <div class="panel-footer">
-                        <button class="btn btn-primary btn-lg  btn-block"> Request</button>
+                        <button class="btn btn-primary btn-lg  btn-block" (click)="sendRequest()"> Request</button>
                     </div>
                 </div>
-                <!-- <div class="row">
-                    <p class="lead">Price</p>
-                </div>
-                <div class="row">
-                    <div class="col-lg-6">
-                        FROM
-                    </div>
-                    <div class="col-lg-6">
-                        TO 
-                    </div>
-                </div>
-                <hr>
-                <div class="row">
-                    <button class="btn btn-primary btn-lg"> Request</button>
-                </div> -->
             </div>
         </div>
     </div>
