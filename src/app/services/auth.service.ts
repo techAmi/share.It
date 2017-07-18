@@ -21,20 +21,24 @@ export class AuthService {
     private router: Router,
     private globalEventManager: GlobalEventsManagerService,
     private db: AngularFireDatabase ) {
-
+      this.users = this.db.list('/users') as
+      FirebaseListObservable<User[]>;
     }
   getCurrentUser() {
     return this.currentUser = firebase.auth().currentUser;
   }
 
+  getUsers() {
+    let users = [];
+    this.db.list('/users').subscribe( usersList => {
+      users = usersList;
+    });
+    return users;
+  }
+
   addUser() {
     this.user = this.getUserInformation ();
-      console.log(this.user);
-      this.users = this.db.list('/users') as
-      FirebaseListObservable<User[]>;
-      this.users.push(this.user);
-      console.log(this.users);
-    return this.users;
+    return this.db.object(`/users/${this.user.userUid}`).update(this.user);
   }
   authenticate() {
     this.afAuth.authState.subscribe(res => {

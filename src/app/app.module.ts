@@ -20,6 +20,10 @@ import { UploadSuccessfullComponent } from './components/addItem/upload-successf
 import { MyItemsComponent } from './components/myItems/my-items.component';
 import { EditItemComponent } from './components/editItem/edit-item.component';
 import { ItemComponent } from './components/items/item.component';
+import { IncomingRequestComponent } from './components/requests/incoming-request.component';
+import { OutcomingRequestComponent } from './components/requests/outcoming-request.component';
+import { RequestsComponent } from './components/requests/requests.component';
+
 import { FormsModule } from '@angular/forms';
 import { AngularFireAuth } from 'angularfire2/auth';
 
@@ -33,6 +37,9 @@ import { routing } from './app.routing';
 import { MomentModule } from 'angular2-moment';
 
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { TabsModule } from 'ngx-bootstrap';
+import { CollapseModule } from 'ngx-bootstrap';
+
 import { DatePickerModule } from 'angular-io-datepicker/src/datepicker/index';
 import { OverlayModule } from 'angular-io-overlay';
 export const firebaseConfig = {
@@ -62,7 +69,10 @@ export const firebaseConfig = {
     MyItemsComponent,
     EditItemComponent,
     ItemComponent,
-    UserDetailsComponent
+    UserDetailsComponent,
+    IncomingRequestComponent,
+    OutcomingRequestComponent,
+    RequestsComponent
   ],
   imports: [
     BrowserModule,
@@ -71,6 +81,8 @@ export const firebaseConfig = {
     MomentModule,
     AlertModule.forRoot(),
     ModalModule.forRoot(),
+    TabsModule.forRoot(),
+    CollapseModule.forRoot(),
     ReactiveFormsModule,
     OverlayModule,
     DatePickerModule,

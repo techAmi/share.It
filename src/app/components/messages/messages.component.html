@@ -8,6 +8,7 @@
     <!-- <h3>Requests Received</h3> -->
     <div class="row" *ngIf="filteredRequests">
       <div class="col-lg-12 well" *ngFor="let request of filteredRequests.incomingRequests">
+        <a routerLink="/incomingRequests/{{request.$key}}">
         <div class="col-lg-1">
           <img [src]="request.requestFrom.photoUrl" class="img-responsive img-circle" style="height: auto; width: 70px">
         </div>
@@ -25,11 +26,13 @@
             <p class="lead"> Cancelled</p>
           </ng-container>
         </div>
+        </a>
       </div>
     </div>
     <!-- <h3>Requests Made</h3> -->
     <div class="row" *ngIf="filteredRequests">
       <div class="col-lg-12 well" *ngFor="let request of filteredRequests.outcomingRequests">
+        <a routerLink="/outcomingRequests/{{request.$key}}">
         <div class="col-lg-1">
           <img [src]="request.requestedItem.itemOwner.photoUrl" class="img-responsive img-circle" style="height: auto; width: 70px">
         </div>
@@ -47,6 +50,7 @@
             <p class="lead"> Cancelled</p>
           </ng-container>
         </div>
+        </a>
       </div>
     </div>
   </div>

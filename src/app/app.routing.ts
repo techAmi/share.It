@@ -14,6 +14,9 @@ import { UploadSuccessfullComponent } from './components/addItem/upload-successf
 import { MyItemsComponent } from './components/myItems/my-items.component';
 import { UserDetailsComponent } from './components/userDetails/user-details.component';
 import { ItemComponent } from './components/items/item.component';
+import { IncomingRequestComponent } from './components/requests/incoming-request.component';
+import { OutcomingRequestComponent } from './components/requests/outcoming-request.component';
+import { RequestsComponent } from './components/requests/requests.component';
 
 
 
@@ -80,6 +83,19 @@ const appRouters: Routes = [
     {
         path: 'user/:id',
         component: UserDetailsComponent
+    },
+    {
+        path: 'incomingRequests/:id',
+        component: IncomingRequestComponent
+    },
+    {
+        path: 'incomingRequests/:id',
+        component: IncomingRequestComponent
+    },
+
+    {
+        path: 'requests',
+        component: RequestsComponent
     }
 
 ];

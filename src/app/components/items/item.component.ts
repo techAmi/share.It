@@ -54,8 +54,8 @@ export class ItemComponent implements OnInit {
         this.request = {
             requestFrom: this.currentUser,
             requestedItem: this.item,
-            requestStarts: this.itemRequestForm.controls['requestStarts'].value.toJSON(),
-            requestEnds: this.itemRequestForm.controls['requestEnds'].value.toJSON(),
+            requestStarts: this.itemRequestForm.controls['requestStarts'].value.toObject(),
+            requestEnds: this.itemRequestForm.controls['requestEnds'].value.toObject(),
             message: this.itemRequestForm.controls['message'].value,
             status: 0
 

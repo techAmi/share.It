@@ -141,6 +141,10 @@ export class FirebaseService {
     return this.requests.push(request);
   }
 
+  updateRequest(key: string, request: Request) {
+    return this.requests.update(key, request);
+  }
+
   getUsers() {
     this.users = this._db.list('/users') as
     FirebaseListObservable<User[]>;

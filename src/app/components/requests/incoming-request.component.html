@@ -1,0 +1,183 @@
+<div class="main">
+  <div class="container">
+    <div class="row" *ngIf="request">
+      <ng-container *ngIf="request.status === 0"> <!--if the request is open-->
+              <div class="col-lg-4 well">
+        <!--requester user info comes here -->
+        <a routerLink="/user/{{request.requestFrom.userUid}}"> <!--Link to user details component-->
+          <div class="row ">
+              <div class="col-lg-4">
+                  <img [src]="request.requestFrom.photoUrl" class="img-responsive img-circle" style="height: 70px; width:auto"/>
+              </div>
+              <div class="col-lg-8">
+                  <div class="row">
+                      <p class="lead"><strong>{{request.requestFrom.displayName}}</strong></p>
+                  </div>
+              </div>
+          </div>
+
+        </a>
+      </div>
+      <div class="col-lg-7 well col-lg-offset-1" *ngIf="request">
+        <!-- requested item info comes here-->
+        <div class="panel panel-default">
+          <div class="panel-heading">
+              <p class="lead">
+                {{request.requestFrom.displayName}} has requested
+                your {{request.requestedItem.itemName}} 
+                for {{request.requestEnds | amDifference: request.requestStarts :'days' : true}} days
+              </p>
+          </div>
+          <div class="panel-body">
+
+            <div class="row">
+              <div class="col-lg-6 requested-item">
+                <p class="lead">Requested Item</p>
+                <figure class="figure">
+                  <img [src]="request.requestedItem.itemImageUrl" class="figure-img img-fluid rounded img-responsive" >
+                  <figcaption class="figure-caption lead">{{request.requestedItem.itemName}}</figcaption>
+                </figure>
+              </div>
+              <div class="col-lg-6 request-details">
+                <p class="lead">Request details</p>
+                <p class="lead">
+                  From: {{request.requestStarts.date}}/{{request.requestStarts.months + 1}}/{{request.requestStarts.years}}
+                </p>
+                <p class="lead">
+                  To: {{request.requestEnds.date}}/{{request.requestEnds.months + 1}}/{{request.requestEnds.years}}
+                </p>
+            
+              </div>
+         
+              
+            </div>
+            <hr>
+            <div class="row">
+              <ng-container *ngIf="request.message !== '' "> <!--if the requester left a message-->
+              <p class="lead">{{request.requestFrom.displayName}} says:</p>
+              <img class="avatar" [src]="request.requestFrom.photoUrl">
+              <div class="text_wrapper">
+                <div class="text">
+                  {{request.message}}
+                </div>
+              </div>
+              </ng-container>
+              <ng-container *ngIf="!request.message">
+                <p>{{request.requestFrom.displayName}} left no message.</p>
+              </ng-container>
+            </div>
+            <div class="row" >
+              <div class="col-lg-12" style="padding-right: 0px !important; padding-top: 5px">
+                <button class="btn btn-default pull-right">messages</button>
+              </div>
+              
+            </div>
+            
+          </div>
+          <hr>
+          <div class="panel-footer">
+            <div class="col-lg-offset-8">
+              <button class="btn btn-danger" (click)="declineModal.show()"> Decline </button>
+              <button class="btn btn-primary" (click)="acceptModal.show()"> Accept </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      </ng-container>
+      <ng-container *ngIf="request.status === 3">
+        <div class="row">
+          <div class="col-lg-12 well">
+            <p class="lead">Thank you for accepting {{request.requestFrom.displayName}}'s request.</p>
+            <p class="lead">Please contact {{request.requestFrom.displayName}} and schedule the item lending</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-5 well">
+            <div class="panel panel-default">
+              <div class="row">
+              <div class="panel-heading">
+                <div class="col-lg-4">
+                  <img class="img-responsive img-circle" [src]="request.requestFrom.photoUrl">
+                </div>
+                <div class="col-lg-8">
+                  <p class="lead">{{request.requestFrom.displayName}}</p>
+                  <button class="btn btn-default" (click)="isCollapsed = !isCollapsed">see more</button>
+                </div>
+                
+              </div>
+              </div>
+              <hr>
+              <div [collapse]="isCollapsed" >
+                <div class="panel-body row">
+                  <ul>
+                    <li><i class="fa fa-envelope-o" aria-hidden="true"></i></li>
+                    <li><i class="fa fa-map-marker " aria-hidden="true"></i></li>
+                    <li><i class="fa fa-mobile" aria-hidden="true"></i></li>
+                  </ul> 
+                </div>
+                <div class="panel-footer">
+                    <button class="btn btn-default pull-right">Message</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div class="col-lg-6 col-lg-offset-1 well">
+            <div class="row">
+              <div class="col-lg-6">
+                <img [src]="request.requestedItem.itemImageUrl" class="img-responsive ">
+                <p class="lead"> {{request.requestedItem.itemName}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12 well">
+            Scheduling
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="request.status === 2">
+        <div>
+          this is a declined request
+        </div>
+      </ng-container>
+      
+    </div>
+  </div>
+</div>
+ 
+<div class="modal fade" bsModal #declineModal="bs-modal" [config]="{backdrop: 'static'}"
+     tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title pull-left">Are you sure you want to decline this request?</h5>
+      </div>
+
+      <div class="modal-footer">
+        <div class="">
+          <button class="btn btn-default" (click)="declineModal.hide()">CANCEL</button>
+          <button class="btn btn-primary"(click)="declineRequest()">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" bsModal #acceptModal="bs-modal" [config]="{backdrop: 'static'}"
+     tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title pull-left">Are you sure you want to accept this request?</h5>
+      </div>
+      <div class="modal-footer">
+        <div class="">
+          <button class="btn btn-default" (click)="acceptModal.hide()">CANCEL</button>
+          <button class="btn btn-primary"(click)="acceptRequest()">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
