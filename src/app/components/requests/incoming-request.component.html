@@ -89,6 +89,7 @@
           <div class="col-lg-12 well">
             <p class="lead">Thank you for accepting {{request.requestFrom.displayName}}'s request.</p>
             <p class="lead">Please contact {{request.requestFrom.displayName}} and schedule the item lending</p>
+            <button class="btn btn-default pull-right">Message</button>
           </div>
         </div>
         <div class="row">
@@ -128,12 +129,29 @@
                 <img [src]="request.requestedItem.itemImageUrl" class="img-responsive ">
                 <p class="lead"> {{request.requestedItem.itemName}}</p>
               </div>
+              <div class="col-lg-6">
+                <p>{{request.requestFrom.displayName}} requested your {{request.requestedItem.itemName}}</p>
+                <p>for {{request.requestEnds | amDifference: request.requestStarts :'days' : true}} days</p>
+                <p>From: {{request.requestStarts.date}}/{{request.requestStarts.months + 1}}/{{request.requestStarts.years}}</p>
+                <p>To: {{request.requestEnds.date}}/{{request.requestEnds.months + 1}}/{{request.requestEnds.years}}</p>
+                
+              </div>
             </div>
           </div>
         </div>
         <div class="row">
           <div class="col-lg-12 well">
-            Scheduling
+           <div class="panel panel-default">
+              <div class="panel-heading">
+                <p class="lead">Scheduling</p>
+              </div>
+              <div class="panel-body">
+                Scheduling form comes here
+              </div>
+              <div class="panel-footer">
+                <button class="btn btn-primary">submit</button>
+              </div>
+           </div>
           </div>
         </div>
       </ng-container>

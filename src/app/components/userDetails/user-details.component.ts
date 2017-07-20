@@ -12,6 +12,7 @@ import { FirebaseService } from '../../services/firebase.service';
 export class UserDetailsComponent {
     user: User;
     items: Item[];
+    msgVal = '';
     constructor (
         private _route: ActivatedRoute,
         private _firebaseService: FirebaseService) {
@@ -35,7 +36,10 @@ export class UserDetailsComponent {
                 });
     }
 
-    messageBtnClick() {
-        console.log('message btn was clicked');
+    sendMessage(msg: string) {
+        console.log('message to send ', msg);
+        this._firebaseService.appendMessage(msg, this.user);
+        this.msgVal = '';
+
     }
 }

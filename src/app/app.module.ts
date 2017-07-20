@@ -23,6 +23,10 @@ import { ItemComponent } from './components/items/item.component';
 import { IncomingRequestComponent } from './components/requests/incoming-request.component';
 import { OutcomingRequestComponent } from './components/requests/outcoming-request.component';
 import { RequestsComponent } from './components/requests/requests.component';
+import { ChatRoomComponent } from './components/messages/chatRoom/chat-room.component';
+import { ReviewsComponent } from './components/reviews/reviews.component';
+import { BorrowedItemsComponent } from './components/borrowedItems/borrowed-items.component';
+import { LentItemsComponent } from './components/lentItems/lent-items.component';
 
 import { FormsModule } from '@angular/forms';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -72,7 +76,11 @@ export const firebaseConfig = {
     UserDetailsComponent,
     IncomingRequestComponent,
     OutcomingRequestComponent,
-    RequestsComponent
+    RequestsComponent,
+    ChatRoomComponent,
+    ReviewsComponent,
+    BorrowedItemsComponent,
+    LentItemsComponent
   ],
   imports: [
     BrowserModule,

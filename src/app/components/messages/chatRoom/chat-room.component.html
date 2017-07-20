@@ -1,0 +1,52 @@
+<div class="main">
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 well"></div>
+        <div class="col-md-5 pull-right">
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <ul class="chat" >
+                        <li class="left clearfix" *ngFor="let message of messages | async ">
+                            <span class="chat-img pull-left">
+                                <img [src]="message.sender.photoUrl" alt="User Avatar" class="img-circle img-responsive" style="height:40px">
+                            </span>
+                            <div class="chat-body clearfix">
+                                <div class="header">
+                                    <strong class="primary-font">{{message.sender.displayName}}</strong> <small class="pull-right text-muted">
+                                        <span class="glyphicon glyphicon-time"></span>12 mins ago</small>
+                                </div>
+                                <p>
+                                    {{message.body}}
+                                </p>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="panel-footer">
+                    <div class="input-group">
+                        <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." [(ngModel)]="msgVal">
+                        <span class="input-group-btn">
+                            <button class="btn btn-warning btn-sm" id="btn-chat" (click)="sendMessage(msgVal)">Send</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+
+<!-- <div class="row columns">
+  <button (click)="login()" *ngIf="!name">Login With Facebook</button>
+
+  <input type="text" id="message" *ngIf="name" placeholder="Chat here..." (keyup.enter)="chatSend($event.target.value)" [(ngModel)]="msgVal" />
+
+    <div class="chat-container" *ngFor="let item of items | async">
+      <a href="#">{{item.name}}</a>
+      
+      <p>{{item.message}}</p>
+    </div>
+</div> -->

@@ -11,11 +11,15 @@ import { Router } from '@angular/router';
 })
 
 export class DashboardComponent implements OnInit {
+
   private isLoggedIn: boolean;
   public userEmail: string;
   public userDisplayName: string;
   private userId: string;
   public myItemsCount = 0;
+  public borrowedItemsCount = 0;
+  public lentItemsCount = 0;
+  public reviewsCount = 0;
   constructor (
     private as: AuthService,
     private router: Router,

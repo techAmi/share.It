@@ -5,53 +5,20 @@
         <p class="lead "> For your safety, we recommand you keep all your transactions on share.it</p>
       </alert>
     </div>
-    <!-- <h3>Requests Received</h3> -->
-    <div class="row" *ngIf="filteredRequests">
-      <div class="col-lg-12 well" *ngFor="let request of filteredRequests.incomingRequests">
-        <a routerLink="/incomingRequests/{{request.$key}}">
-        <div class="col-lg-1">
-          <img [src]="request.requestFrom.photoUrl" class="img-responsive img-circle" style="height: auto; width: 70px">
-        </div>
+    <div class="row well" *ngFor="let chatRoom of currentUserChatRooms">
+      <a routerLink="/messages/chatRoom/{{chatRoom.$key}}">
         <div class="col-lg-2">
-          <strong>{{request.requestFrom.displayName}}</strong>
+          <div>
+            {{chatRoom.messagesThread.length}}
+          </div>
+          <img [src]="chatRoom.messagesThread[chatRoom.messagesThread.length-1].sender.photoUrl" class="img-responsive img-circle" style="height:70px;">
+          <p>{{chatRoom.messagesThread[chatRoom.messagesThread.length-1].sender.displayName}}</p>
         </div>
-        <div class="col-lg-8">
-          <p class="lead">{{request.requestFrom.displayName}} Has requested {{request.requestedItem.itemOwner.displayName}}'s {{request.requestedItem.itemName}} for {{request.requestEnds | amDifference: request.requestStarts :'days' : true}} days</p>
+        <div class="col-lg-6">
+          <p>{{chatRoom.messagesThread[chatRoom.messagesThread.length-1].body}}</p>
         </div>
-        <div class="col-lg-1">
-          <ng-container *ngIf="request.status === 0">
-            <p class="lead"> Open</p>
-          </ng-container>
-          <ng-container *ngIf="request.status === 1">
-            <p class="lead"> Cancelled</p>
-          </ng-container>
-        </div>
-        </a>
-      </div>
+      </a>
     </div>
-    <!-- <h3>Requests Made</h3> -->
-    <div class="row" *ngIf="filteredRequests">
-      <div class="col-lg-12 well" *ngFor="let request of filteredRequests.outcomingRequests">
-        <a routerLink="/outcomingRequests/{{request.$key}}">
-        <div class="col-lg-1">
-          <img [src]="request.requestedItem.itemOwner.photoUrl" class="img-responsive img-circle" style="height: auto; width: 70px">
-        </div>
-        <div class="col-lg-2">
-          <strong>{{request.requestedItem.itemOwner.displayName}}</strong>
-        </div>
-        <div class="col-lg-8">
-          <p class="lead">{{request.requestFrom.displayName}} Has requested {{request.requestedItem.itemOwner.displayName}}'s {{request.requestedItem.itemName}} for {{request.requestEnds | amDifference: request.requestStarts :'days' : true}} days</p>
-        </div>
-        <div class="col-lg-1">
-          <ng-container *ngIf="request.status === 0">
-            <p class="lead"> Open</p>
-          </ng-container>
-          <ng-container *ngIf="request.status === 1">
-            <p class="lead"> Cancelled</p>
-          </ng-container>
-        </div>
-        </a>
-      </div>
-    </div>
+
   </div>
 </div>

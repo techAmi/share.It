@@ -1,35 +1,52 @@
 <div class="main">
     <div class="container">
         <div class="row">
-            <div class="col-lg-2 col-md-2 well  col-lg-offset-4">
-                <p class="lead text-primary"> REVIEWS</p>
-                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-            </div>
-            <div class="col-lg-2 col-md-2 well">
-                <a routerLink="/my-items">
+            <a routerLink="/reviews">
+                <div class="col-lg-2 col-md-2 well">
+                    <p class="lead text-primary"> REVIEWS</p>
+                    <br>
+                    <h2>{{reviewsCount}}</h2>
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                </div>
+            </a>
+            <a routerLink="/my-items">
+                <div class="col-lg-2 col-md-2 well">
                     <p class="lead text-primary">MY ITEMS</p>
+                    <br>
                     <h2>{{myItemsCount}}</h2>
                     <i class="fa fa-th-list" aria-hidden="true"></i>
-                </a>
-            </div>
-            <div class="col-lg-2 col-md-2 well">
-                <p class="lead text-primary">BORROWED ITEMS</p>
-                 <span class=" glyphicon glyphicon-import gl-5x" aria-hidden="true"></span>
-            </div>
-            <div class="col-lg-2 col-md-2 well">
-                <p class="lead text-primary">LENT ITEMS</p>
-                 <span class="glyphicon glyphicon-export" aria-hidden="true"></span>
-            </div>
+                </div>
+            </a>
+            <a routerLink="/borrowedItems">
+                <div class="col-lg-2 col-md-2 well">
+                    <p class="lead text-primary">BORROWED ITEMS</p>
+                    <h2 style="padding-top: 18px">{{borrowedItemsCount}}</h2>
+                    <span class=" glyphicon glyphicon-import gl-5x" aria-hidden="true"></span>
+                </div>
+            </a>
+            <a routerLink="/lentItems">
+                <div class="col-lg-2 col-md-2 well">
+                    <p class="lead text-primary">LENT ITEMS</p>
+                    <br>
+                    <h2>{{lentItemsCount}}</h2>
+                    <span class="glyphicon glyphicon-export gl-5x" aria-hidden="true"></span>
+                </div>
+            </a>
         </div>
         <div class="row">
             <div class="col-lg-2 col-md-2 well">
                 <p class="lead text-primary">MONEY SPENT</p>
+                <br>
+                <h2>0</h2>
                 <i class="fa fa-credit-card" aria-hidden="true"></i>
             </div>
             <div class="col-lg-2 col-md-2 well">
                 <p class="lead text-primary">MONEY EARNED</p>
+                <br>
+                <h2>0</h2>
                 <i class="fa fa-jpy" aria-hidden="true"></i>
             </div>
         </div>
     </div>
+
 </div>

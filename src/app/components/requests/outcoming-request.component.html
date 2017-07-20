@@ -1,5 +1,17 @@
 <div class="main">
   <div class="container">
-    <h1>Outcoming requests</h1>
+    <ng-container *ngIf="request && request.status === 3">
+      <div class="row">
+        <div class="col-lg-12">
+          <p class="lead">
+            {{request.requestedItem.itemOwner.displayName}} has accepted to lend you theire 
+            {{request.requestedItem.itemName}}
+          </p>
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="request && request.status === 0">
+      <p class="lead"> we're waiting for your request to be accepted</p>
+    </ng-container>
   </div>
 </div>

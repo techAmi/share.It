@@ -17,7 +17,10 @@ import { ItemComponent } from './components/items/item.component';
 import { IncomingRequestComponent } from './components/requests/incoming-request.component';
 import { OutcomingRequestComponent } from './components/requests/outcoming-request.component';
 import { RequestsComponent } from './components/requests/requests.component';
-
+import { ChatRoomComponent } from './components/messages/chatRoom/chat-room.component';
+import { ReviewsComponent } from './components/reviews/reviews.component';
+import { BorrowedItemsComponent } from './components/borrowedItems/borrowed-items.component';
+import { LentItemsComponent } from './components/lentItems/lent-items.component';
 
 
 const appRouters: Routes = [
@@ -89,14 +92,35 @@ const appRouters: Routes = [
         component: IncomingRequestComponent
     },
     {
-        path: 'incomingRequests/:id',
-        component: IncomingRequestComponent
+        path: 'outcomingRequests/:id',
+        component: OutcomingRequestComponent
     },
 
     {
         path: 'requests',
         component: RequestsComponent
+    },
+
+    {
+        path: 'messages/chatRoom/:id',
+        component: ChatRoomComponent
+    },
+
+    {
+        path: 'reviews',
+        component: ReviewsComponent
+    },
+
+    {
+        path: 'borrowedItems',
+        component: BorrowedItemsComponent
+    },
+
+    {
+        path: 'lentItems',
+        component: LentItemsComponent
     }
+
 
 ];
 
