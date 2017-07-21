@@ -21,7 +21,8 @@ import { ChatRoomComponent } from './components/messages/chatRoom/chat-room.comp
 import { ReviewsComponent } from './components/reviews/reviews.component';
 import { BorrowedItemsComponent } from './components/borrowedItems/borrowed-items.component';
 import { LentItemsComponent } from './components/lentItems/lent-items.component';
-
+import { ProfileComponent } from './components/profile/profile.component';
+import { AccountComponent } from './components/account/account.component';
 
 const appRouters: Routes = [
     {
@@ -119,6 +120,16 @@ const appRouters: Routes = [
     {
         path: 'lentItems',
         component: LentItemsComponent
+    },
+
+    {
+        path: 'profile',
+        component: ProfileComponent
+    },
+
+    {
+        path: 'account',
+        component: AccountComponent
     }
 
 

@@ -27,6 +27,8 @@ import { ChatRoomComponent } from './components/messages/chatRoom/chat-room.comp
 import { ReviewsComponent } from './components/reviews/reviews.component';
 import { BorrowedItemsComponent } from './components/borrowedItems/borrowed-items.component';
 import { LentItemsComponent } from './components/lentItems/lent-items.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { AccountComponent } from './components/account/account.component';
 
 import { FormsModule } from '@angular/forms';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -80,7 +82,9 @@ export const firebaseConfig = {
     ChatRoomComponent,
     ReviewsComponent,
     BorrowedItemsComponent,
-    LentItemsComponent
+    LentItemsComponent,
+    ProfileComponent,
+    AccountComponent
   ],
   imports: [
     BrowserModule,

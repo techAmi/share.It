@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 import { User } from '../../models/user';
 import { Item } from '../../models/item';
 import { FirebaseService } from '../../services/firebase.service';
@@ -10,10 +11,13 @@ import { FirebaseService } from '../../services/firebase.service';
 })
 
 export class UserDetailsComponent {
+    public collapse = false;
     user: User;
     items: Item[];
     msgVal = '';
     constructor (
+        private _as: AuthService,
+        private _router: Router,
         private _route: ActivatedRoute,
         private _firebaseService: FirebaseService) {
             this.items = [];
@@ -41,5 +45,15 @@ export class UserDetailsComponent {
         this._firebaseService.appendMessage(msg, this.user);
         this.msgVal = '';
 
+    }
+    messageBtnClicked() {
+        // check if user is logged in before sending message
+        console.log('message btn was clicked');
+        if (!this._as.getUserInformation()) {
+            console.log('user not logged in');
+            this._router.navigate(['login']);
+        } else {
+            this.collapse = true;
+        }
     }
 }

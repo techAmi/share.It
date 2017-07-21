@@ -23,3 +23,7 @@
 .glyphicon-send{
     -webkit-transform: rotate(80kdeg);
 }
+
+a, a:hover{
+    text-decoration: none;
+}

@@ -104,6 +104,7 @@ export class AuthService {
 
   logout() {
     this.afAuth.auth.signOut().then( data => {
+      this.globalEventManager.switchNavBar(false);
       this.router.navigate(['']);
     });
   }

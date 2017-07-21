@@ -51,6 +51,9 @@ export class ItemComponent implements OnInit {
     }
 
     sendRequest() {
+        if (!this.currentUser) {
+            this._router.navigate(['login']);
+        }
         this.request = {
             requestFrom: this.currentUser,
             requestedItem: this.item,

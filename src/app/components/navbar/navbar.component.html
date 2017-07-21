@@ -38,7 +38,16 @@
 
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
         <ul class="nav navbar-nav navbar-right profile-image">
-          <li> <img [src]="profilePhotoUrl" alt="..." class="img-circle img-responsive" style="height: 50px; width: 50px"></li>
+          <div class="dropdown">
+            <li> <img [src]="profilePhotoUrl" alt="..." class="img-circle img-responsive dropbtn" style="height: 50px; width: 50px"></li>
+            <div class="dropdown-content">
+              <a routerLink="/profile">PROFILE</a>
+              <a routerLink="/account">ACCOUNT</a>
+              <a routerLink="/my-items">MY ITEMS</a>
+              <a routerLink="/signout">LOGOUT</a>
+            </div>
+          </div>
+          
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li><a  routerLink="/lender">WHY LEND</a></li>
