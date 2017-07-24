@@ -177,6 +177,22 @@ export class FirebaseService {
     return this.users;
   }
 
+  getCurrentUser(): User {
+    let currentUser: User;
+    this.getUsers().subscribe(users => {
+      users.forEach(user => {
+        if (user.userUid === this._as.getUserInformation().userUid) {
+          currentUser = user;
+        }
+      })
+    });
+    return currentUser;
+  }
+
+  updateUser(user: User) {
+    return this.getUsers().update(user.userUid, user);
+  }
+
   getChatRooms() {
     this.chatRoomsObservable = this._db.list('/messages') as
     FirebaseListObservable<ChatRoom[]>;

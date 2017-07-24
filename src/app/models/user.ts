@@ -3,4 +3,9 @@ export interface User {
   displayName: string;
   photoUrl: string;
   userUid: string;
+  lifeStory?: string;
+  birthDate?: string;
+  phone?: string;
+  address?: string;
+
 }

@@ -40,7 +40,7 @@ export class AddItemComponent implements OnInit {
       photoUrl: this._as.getUserInformation().photoUrl,
       userUid: this._as.getUserInformation().userUid
     };
-    
+
   }
   ngOnInit() {
 

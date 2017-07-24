@@ -9,16 +9,17 @@
                     <p class="lead"><strong>{{user.displayName}}</strong></p>
                 </div>
                 <div class="row">
-                    <a class="btn btn-default btn-large" (click)="messageBtnClicked()" >Message</a>
+                    <a class="btn btn-default btn-large" (click)="messageBtnClicked()" *ngIf="hideMessageBtn" >Message</a>
 
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row" *ngIf="isLoggedIn">
             <div (collapsed)="collapsed($event)"
                         (expanded)="expanded($event)"
                         [collapse]="isCollapsed"
-                        class="card card-block card-header">
+                        class="card card-block card-header"
+                        *ngIf="!hideMessageBtn">
                 <div class="well well-lg col-lg-8 col-lg-offset-2">
                     <div class="form-group">
                         <textarea class="form-control" rows="3" id="textArea" placeholder="Message" [(ngModel)]="msgVal"></textarea>

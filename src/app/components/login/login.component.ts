@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { ModalDirective } from 'ngx-bootstrap/modal';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -9,8 +10,19 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LoginComponent {
 
-  constructor (private as: AuthService) {
+  @ViewChild('autoShowModal') public autoShowModal: ModalDirective;
 
+  public isModalShown = false;
+  constructor (private as: AuthService) {
+    this.isModalShown = true;
+  }
+
+  public hideModal(): void {
+    this.autoShowModal.hide();
+  }
+
+  public onHidden() {
+    this.isModalShown = false;
   }
   loginWithGoogle() {
     this.as.loginWithGoogle();

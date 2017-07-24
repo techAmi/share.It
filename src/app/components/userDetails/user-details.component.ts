@@ -15,6 +15,8 @@ export class UserDetailsComponent {
     user: User;
     items: Item[];
     msgVal = '';
+    isLoggedIn = false;
+    hideMessageBtn = true;
     constructor (
         private _as: AuthService,
         private _router: Router,
@@ -38,6 +40,11 @@ export class UserDetailsComponent {
                         })
                     });
                 });
+            if (this._as.getUserInformation()) {
+                this.isLoggedIn = this._as.getUserInformation().isLoggedIn;
+            } else {
+                 this.isLoggedIn = true;
+                }
     }
 
     sendMessage(msg: string) {
@@ -49,11 +56,12 @@ export class UserDetailsComponent {
     messageBtnClicked() {
         // check if user is logged in before sending message
         console.log('message btn was clicked');
+        // user is not logged in
         if (!this._as.getUserInformation()) {
             console.log('user not logged in');
             this._router.navigate(['login']);
         } else {
-            this.collapse = true;
+            this.hideMessageBtn = false; // if the button was clicked and user is logged in hide msg button
         }
     }
 }

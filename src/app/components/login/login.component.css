@@ -11,16 +11,27 @@ input[type="checkbox"]{
 	margin-top: 10em;
 }
 
+.modal {
+	margin-top: 10%;
+}
 @media (min-width: 768px) {
     .omb_row-sm-offset-3 div:first-child[class*="col-"] {
         margin-left: 25%;
     }
 }
 
+.omb_login{
+	margin-left: 25px
+}
 
 .omb_login .omb_authTitle {
     text-align: center;
 	line-height: 300%;
+}
+
+.omb_socialButtons {
+	padding-right: 10px;
+	border-right: solid 2px #cdcdcd;
 }
 	
 .omb_login .omb_socialButtons a {
@@ -31,8 +42,12 @@ input[type="checkbox"]{
     color: white;
 	opacity:1;    	
 }
-.omb_login .omb_socialButtons .omb_btn-facebook {background: #3b5998;}
-.omb_login .omb_socialButtons .omb_btn-twitter {background: #00aced;}
+.omb_login .omb_socialButtons .omb_btn-facebook {
+	background: #3b5998;
+	margin-bottom: 5px;}
+.omb_login .omb_socialButtons .omb_btn-twitter {
+	background: #00aced;
+	margin-bottom: 5px}
 .omb_login .omb_socialButtons .omb_btn-google {background: #c32f10;}
 
 
@@ -50,6 +65,14 @@ input[type="checkbox"]{
 	height: 1px;
 	margin-top: 0px !important;
 	margin-bottom: 0px !important;
+}
+.omb_hrOr{
+	background-color: #cdcdcd;
+	height: 1px;
+	margin-top: 0px !important;
+	margin-bottom: 0px !important;
+	transform: translateX(-150px) rotate(90deg);
+
 }
 .omb_login .omb_loginOr .omb_spanOr {
 	display: block;
@@ -75,4 +98,8 @@ input[type="checkbox"]{
         text-align: right;
 		margin-top:10px;
  	}		
+}
+
+.input-group-addon{
+	padding-left: 0;
 }
