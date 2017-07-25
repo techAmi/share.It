@@ -29,6 +29,7 @@ export class HomeComponent implements OnInit {
       this.userDisplayName = this.as.getUserInformation().displayName.split(' ')[0];
     }
     this.branches = [];
+    this.recentlyAddedItems = [];
   }
 
   ngOnInit() {
@@ -45,8 +46,13 @@ export class HomeComponent implements OnInit {
     });
     });
     console.log(this.branches);
-    this._firebaseService.getRecentlyAddedItems().subscribe( items => {
-      this.recentlyAddedItems = items;
-    })
+    // if the user is logged in delete user items from the recently added items list
+    if (this._firebaseService.getCurrentUser()) {
+      this.recentlyAddedItems = this._firebaseService.filterRecentlyAddedItems();
+    } else {
+      this._firebaseService.getRecentlyAddedItems().subscribe( items => {
+        this.recentlyAddedItems = items;
+      });
+    }
   }
 }

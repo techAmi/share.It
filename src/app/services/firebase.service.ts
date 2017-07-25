@@ -120,12 +120,25 @@ export class FirebaseService {
     this.recentlyAddedItems = this._db.list('/items', {
       query: {
         orderByChild: 'createAt',
-        limitToLast: 5
+        limitToLast: 10
       }
     }) as
     FirebaseListObservable<Item[]>;
 
     return this.recentlyAddedItems;
+  }
+
+  filterRecentlyAddedItems() {
+    let filtredRecentlyAddedItems: Item[];
+    filtredRecentlyAddedItems = [];
+    this.getRecentlyAddedItems().subscribe(items => {
+      items.forEach(item => {
+        if (item.itemOwner.userUid !== this._as.getUserInformation().userUid) {
+          filtredRecentlyAddedItems.push(item);
+        }
+      })
+    });
+    return filtredRecentlyAddedItems;
   }
 
   updateItem(key: string, updItem: Item) {
