@@ -5,17 +5,14 @@
         <p class="lead "> For your safety, we recommand you keep all your transactions on share.it</p>
       </alert>
     </div>
-    <div class="row well" *ngFor="let chatRoom of currentUserChatRooms">
-      <a routerLink="/messages/chatRoom/{{chatRoom.$key}}">
+    <div class="row well" *ngFor="let chat of chatElements">
+      <a routerLink="/messages/chatRoom/{{chat.chatRoomKey}}">
         <div class="col-lg-2">
-          <div>
-            {{chatRoom.messagesThread.length}}
-          </div>
-          <img [src]="chatRoom.messagesThread[chatRoom.messagesThread.length-1].sender.photoUrl" class="img-responsive img-circle" style="height:70px;">
-          <p>{{chatRoom.messagesThread[chatRoom.messagesThread.length-1].sender.displayName}}</p>
+          <img [src]="chat.lastMessage.sender.photoUrl" class="img-responsive img-circle" style="height:70px;">
+          <p>{{chat.lastMessage.sender.displayName}}</p>
         </div>
         <div class="col-lg-6">
-          <p>{{chatRoom.messagesThread[chatRoom.messagesThread.length-1].body}}</p>
+          <p>{{chat.lastMessage.body}}</p>
         </div>
       </a>
     </div>

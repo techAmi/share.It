@@ -37,8 +37,18 @@ export class AuthService {
   }
 
   addUser() {
+    let  existingUser = 0;
     this.user = this.getUserInformation ();
-    return this.db.object(`/users/${this.user.userUid}`).update(this.user);
+    this.getUsers().forEach(user => {
+      if (user.userUid === this.user.userUid) {
+        existingUser ++;
+      }
+    });
+    if (existingUser !== 0) {
+      return;
+    } else {
+      return this.db.object(`/users/${this.user.userUid}`).update(this.user);
+    }
   }
   authenticate() {
     this.afAuth.authState.subscribe(res => {

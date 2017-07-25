@@ -41,7 +41,7 @@ export class EditItemComponent implements OnInit {
         itemBrand: new FormControl(''),
         itemModel: new FormControl(''),
       });
-      this.currentUser = this._as.getUserInformation();
+      this.currentUser = this._firebaseService.getCurrentUser();
   }
   ngOnInit() {
     console.log('item key', this.itemKey);

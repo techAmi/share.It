@@ -16,12 +16,14 @@ import { Message } from '../../models/message';
 export class MessagesComponent implements OnInit {
   private allChatRooms: ChatRoom[];
   public currentUserChatRooms: ChatRoom[];
+  public chatElements: any[];
   public lastMessages: Message[];
   constructor(
     private _firebaseService: FirebaseService,
     private _as: AuthService
   ) {
     this.currentUserChatRooms = [];
+    this.chatElements = [];
   }
 
   ngOnInit() {
@@ -37,7 +39,20 @@ export class MessagesComponent implements OnInit {
           this.currentUserChatRooms.push(chatroom);
         }
       });
+
+
     });
+
+    this.currentUserChatRooms.forEach( chatRoom => {
+      console.log('the message thread, ', chatRoom.messagesThread);
+      this.chatElements.push(
+        {
+          lastMessage: chatRoom.messagesThread[Object.keys(chatRoom.messagesThread)[Object.keys(chatRoom.messagesThread).length - 1]],
+          chatRoomKey: chatRoom.$key
+        }
+      )
+    });
+    console.log('chat elements ', this.chatElements);
     // TODO: Fix this later
     // this.currentUserChatRooms.forEach(chatroom => {
     //   this.lastMessages.push(this._firebaseService.getLastMessage(chatroom.$key));

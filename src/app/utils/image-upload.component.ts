@@ -34,8 +34,12 @@ export class UploadComponent implements OnInit {
   fileList: FirebaseListObservable<Image[]>;
   ImageList: Observable<Image[]>;
   public image: Image;
+  @Input()
   public imageUrl = '';
   public imagePath: string;
+
+  @Input()
+  mode: number;
 
   @Output()
   emitImageUrl: EventEmitter<string> = new EventEmitter<string>();
@@ -47,7 +51,14 @@ export class UploadComponent implements OnInit {
                 this.folder = _as.getUserInformation().userUid;
   }
   ngOnInit() {
-    document.getElementById('image-preview').hidden = true;
+    console.log('this is the mode of the parent component ', this.mode);
+    if (this.mode === 0) {
+      console.log('the parent component is profile edit');
+      document.getElementById('image-preview').hidden = false;
+    } else {
+      console.log('some other parent component');
+      document.getElementById('image-preview').hidden = true;
+    }
   }
 
   changeListener() {
@@ -72,8 +83,13 @@ export class UploadComponent implements OnInit {
   }
   // upload an item photo
   upload() {
-    document.getElementById('image-preview').hidden = false;
-    document.getElementById('upload-image').hidden = true;
+    // document.getElementById('image-preview').hidden = false;
+    if (this.mode === 0) {
+      document.getElementById('upload-image').hidden = false;
+      document.getElementById('image-preview').hidden = false;
+    } else {
+      document.getElementById('image-preview').hidden = false;
+    }
     // this.changeListener();
     // Create a root reference
     console.log ('firebase app ', firebase);
