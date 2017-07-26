@@ -23,33 +23,33 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-lg-12">
-                                <p class="lead">PRICE INFORMATION</p>
+                                <p class="lead">{{"PRICE_INFO" | translate}}</p>
                             </div>
                         </div>
                         <hr>
                         <form [formGroup]="itemRequestForm">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <p class="lead">BORROWING PERIOD</p>
+                                    <p class="lead">{{"BORROWING_PERIOD" | translate}}</p>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <p class="">FROM</p>
+                                    <p class="">{{"FROM" | translate}}</p>
                                     <date-picker formControlName="requestStarts" [showClearButton]="false"></date-picker>
                                 </div>
                             </div>
                             <div class="row">
                                 
                                 <div class="col-lg-12">
-                                    <p class="">TO</p>
+                                    <p class="">{{"TO" | translate}}</p>
                                     <date-picker formControlName="requestEnds" [showClearButton]="false"></date-picker>
                                 </div>
                             </div>
                             <hr>
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <p class="lead "> Write a message to the item owner</p>
+                                    <p class="lead "> {{"WRITE_MESSAGE" | translate}}</p>
                                     <textarea class="form-control" rows="2" formControlName="message"></textarea>
                                 </div>
                             </div>
@@ -57,7 +57,7 @@
                     </div>
                     <hr>
                     <div class="panel-footer">
-                        <button class="btn btn-primary btn-lg  btn-block" (click)="sendRequest()"> Request</button>
+                        <button class="btn btn-primary btn-lg  btn-block" (click)="sendRequest()"> {{"REQUEST" | translate }}</button>
                     </div>
                 </div>
             </div>

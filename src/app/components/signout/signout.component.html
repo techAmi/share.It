@@ -10,11 +10,11 @@
             </button>
           </div>
            <div class="modal-body">
-            <p class="lead">Are you sure you want to logout?</p>
+            <p class="lead">{{"CONFIRM_LOGOUT" | translate}}</p>
           </div> 
           <div class="modal-footer">
-            <a class="btn btn-default" routerLink="/">Cancel</a>
-            <button class="btn btn-warning" (click)="logout()">Logout</button>
+            <a class="btn btn-default" routerLink="/">{{"CANCEL" | translate}}</a>
+            <button class="btn btn-warning" (click)="logout()">{{"LOGOUT" | translate}}</button>
           </div>
         </div>
       </div>

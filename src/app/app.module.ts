@@ -2,6 +2,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AngularFireModule} from 'angularfire2';
 
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { HttpModule, Http } from '@angular/http';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
 import { AlertModule } from 'ngx-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
@@ -30,7 +34,9 @@ import { LentItemsComponent } from './components/lentItems/lent-items.component'
 import { ProfileComponent } from './components/profile/profile.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { AccountComponent } from './components/account/account.component';
+import { SearchComponent } from './components/search/search.component';
 
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { FormsModule } from '@angular/forms';
 import { AngularFireAuth } from 'angularfire2/auth';
 
@@ -57,6 +63,11 @@ export const firebaseConfig = {
     storageBucket: 'shareit-1cdda.appspot.com',
     messagingSenderId: '258962822944'
   };
+
+// AoT requires an exported function for factories
+export function HttpLoaderFactory(http: Http) {
+    return new TranslateHttpLoader(http);
+}
 
 @NgModule({
   declarations: [
@@ -86,9 +97,11 @@ export const firebaseConfig = {
     LentItemsComponent,
     ProfileComponent,
     EditProfileComponent,
-    AccountComponent
+    AccountComponent,
+    SearchComponent
   ],
   imports: [
+    HttpModule,
     BrowserModule,
     routing,
     FormsModule,
@@ -96,12 +109,19 @@ export const firebaseConfig = {
     AlertModule.forRoot(),
     ModalModule.forRoot(),
     TabsModule.forRoot(),
+    BsDropdownModule.forRoot(),
     CollapseModule.forRoot(),
     ReactiveFormsModule,
     OverlayModule,
     DatePickerModule,
     AngularFireDatabaseModule,
-
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [Http]
+      }
+    }),
     AngularFireModule.initializeApp(firebaseConfig)
   ],
   providers: [

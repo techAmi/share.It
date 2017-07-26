@@ -86,6 +86,15 @@ export class FirebaseService {
     return this.myItems;
   }
 
+  searchItems(keyword: string) {
+    return this._db.list('/items', {
+      query: {
+        orderByChild: 'itemName',
+        equalTo: keyword
+      }
+    }) as
+    FirebaseListObservable<Item[]>
+  }
   getBorrowedItems(userId: string) {
     this.borrowedItems = [];
     this.getRequests().subscribe(requests => {

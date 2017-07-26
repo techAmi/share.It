@@ -1,8 +1,8 @@
 <ng-container *ngIf="!switchNavbar">
-  <nav class="navbar navbar-fixed-top">
+  <nav class="navbar navbar-fixed-top navbar-inverse">
     <div class="container-fluid">
       <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" aria-expanded="false" (click)="isCollapsed = !isCollapsed">
           <span class="sr-only">Toggle navigation</span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
@@ -11,23 +11,37 @@
         <a class="navbar-brand"  routerLink="/">Share.It</a>
       </div>
 
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2" [collapse]="!isCollapsed">
         <ul class="nav navbar-nav navbar-right">
-          <li><a  routerLink="/lender">BECOME A LENDER</a></li>
-          <li><a  routerLink="/faq">FAQ</a></li>
-          <li><a  routerLink="/about">ABOUT US</a></li>
-          <li><a  routerLink="/login">SIGN IN</a></li>
+          
+          <li>
+            <a>
+              <span dropdown (onShown)="onShown()" (onHidden)="onHidden()" (isOpenChange)="isOpenChange()">
+              <a href dropdownToggle (click)="false">{{"LANGUAGE" | translate}}　<span class="caret"></span></a>
+                <ul *dropdownMenu class="dropdown-menu">
+                  <li *ngFor="let language of languages">
+                    <a class="dropdown-item" (click)="changeLanguage(language)">{{language}}</a>
+                  </li>
+                </ul>
+              </span>
+            </a>
+
+          </li>
+          <li><a  routerLink="/lender">{{"BECOME_A_LENDER" | translate}}</a></li>
+          <li><a  routerLink="/faq">{{"FAQ" | translate}}</a></li>
+          <li><a  routerLink="/about">{{"ABOUT_US" | translate}}</a></li>
+          <li><a  routerLink="/login">{{"SIGN_IN" | translate }}</a></li>
         </ul>
       </div>
     </div>
   </nav>
 </ng-container>
 
-<ng-container *ngIf="switchNavbar">
-  <nav class="navbar navbar-fixed-top">
+ <ng-container *ngIf="switchNavbar">
+  <nav class="navbar navbar-fixed-top navbar-inverse">
     <div class="container-fluid">
       <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2"  (click)="isCollapsed = !isCollapsed">
           <span class="sr-only">Toggle navigation</span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
@@ -36,33 +50,33 @@
         <a class="navbar-brand"  routerLink="/">Share.It</a>
       </div>
 
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2" [collapse]="isCollapsed">
         <ul class="nav navbar-nav navbar-right profile-image">
           <div class="dropdown">
             <li> <img [src]="profilePhotoUrl" alt="..." class="img-circle img-responsive dropbtn" style="height: 50px; width: 50px"></li>
             <div class="dropdown-content">
-              <a routerLink="/profile">PROFILE</a>
-              <a routerLink="/account">ACCOUNT</a>
-              <a routerLink="/my-items">MY ITEMS</a>
-              <a routerLink="/signout">LOGOUT</a>
+              <a routerLink="/profile">{{"PROFILE" | translate}}</a>
+              <a routerLink="/account">{{"ACCOUNT" | translate}}</a>
+              <a routerLink="/my-items">{{"MY_ITEMS" | translate}}</a>
+              <a routerLink="/signout">{{"LOGOUT" | translate}}</a>
             </div>
           </div>
           
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li><a  routerLink="/lender">WHY LEND</a></li>
-          <li><a  routerLink="/dashboard">DASHBOARD</a></li>
-          <li><a  routerLink="/requests">REQUESTS</a></li>
-          <li><a  routerLink="/messages">MESSAGES</a></li>
-          <li><a  routerLink="/addItem">ADD ITEM</a></li>
+          <li><a  routerLink="/lender">{{"WHY_LEND" | translate}}</a></li>
+          <li><a  routerLink="/dashboard">{{"DASHBOARD" | translate}}</a></li>
+          <li><a  routerLink="/requests">{{"REQUESTS" | translate}}</a></li>
+          <li><a  routerLink="/messages">{{"MESSAGES" | translate}}</a></li>
+          <li><a  routerLink="/addItem">{{"ADD_ITEM_" | translate}}</a></li>
           <li></li>
         </ul>
-        <!--TODO: add a user icon and a user menu (account actions like Profile, account, refferals, my items and logout)-->
+        
         
       </div>
     </div>
   </nav>
-</ng-container>
+</ng-container> 
 
 
 

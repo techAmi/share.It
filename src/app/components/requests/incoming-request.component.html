@@ -39,12 +39,12 @@
                 </figure>
               </div>
               <div class="col-lg-6 request-details">
-                <p class="lead">Request details</p>
+                <p class="lead">{{"REQUEST_DETAILS" | translate}}</p>
                 <p class="lead">
-                  From: {{request.requestStarts.date}}/{{request.requestStarts.months + 1}}/{{request.requestStarts.years}}
+                  {{"FROM" | translate}}: {{request.requestStarts.date}}/{{request.requestStarts.months + 1}}/{{request.requestStarts.years}}
                 </p>
                 <p class="lead">
-                  To: {{request.requestEnds.date}}/{{request.requestEnds.months + 1}}/{{request.requestEnds.years}}
+                  {{"TO" | translate}}: {{request.requestEnds.date}}/{{request.requestEnds.months + 1}}/{{request.requestEnds.years}}
                 </p>
             
               </div>
@@ -63,12 +63,12 @@
               </div>
               </ng-container>
               <ng-container *ngIf="!request.message">
-                <p>{{request.requestFrom.displayName}} left no message.</p>
+                <p>{{request.requestFrom.displayName}} {{"NO_MESSAGE_LEFT" | translate }}</p>
               </ng-container>
             </div>
             <div class="row" >
               <div class="col-lg-12" style="padding-right: 0px !important; padding-top: 5px">
-                <button class="btn btn-default pull-right">messages</button>
+                <button class="btn btn-default pull-right">{{"MESSAGES" | translate }}</button>
               </div>
               
             </div>
@@ -89,7 +89,7 @@
           <div class="col-lg-12 well">
             <p class="lead">Thank you for accepting {{request.requestFrom.displayName}}'s request.</p>
             <p class="lead">Please contact {{request.requestFrom.displayName}} and schedule the item sharing</p>
-            <button class="btn btn-default pull-right">Message</button>
+            <button class="btn btn-default pull-right">{{"MESSAGE" | translate}}</button>
           </div>
         </div>
         <div class="row">
@@ -102,7 +102,7 @@
                 </div>
                 <div class="col-lg-8">
                   <p class="lead">{{request.requestFrom.displayName}}</p>
-                  <button class="btn btn-default" (click)="isCollapsed = !isCollapsed">see more</button>
+                  <button class="btn btn-default" (click)="isCollapsed = !isCollapsed">{{"SEE_MORE" | translate }}</button>
                 </div>
                 
               </div>
@@ -131,9 +131,9 @@
               </div>
               <div class="col-lg-6">
                 <p>{{request.requestFrom.displayName}} requested your {{request.requestedItem.itemName}}</p>
-                <p>for {{request.requestEnds | amDifference: request.requestStarts :'days' : true}} days</p>
-                <p>From: {{request.requestStarts.date}}/{{request.requestStarts.months + 1}}/{{request.requestStarts.years}}</p>
-                <p>To: {{request.requestEnds.date}}/{{request.requestEnds.months + 1}}/{{request.requestEnds.years}}</p>
+                <p>{{"FOR" | translate}} {{request.requestEnds | amDifference: request.requestStarts :'days' : true}} days</p>
+                <p>{{"FROM" | translate}}: {{request.requestStarts.date}}/{{request.requestStarts.months + 1}}/{{request.requestStarts.years}}</p>
+                <p>{{"TO" | translate}}: {{request.requestEnds.date}}/{{request.requestEnds.months + 1}}/{{request.requestEnds.years}}</p>
                 
               </div>
             </div>
@@ -170,13 +170,13 @@
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title pull-left">Are you sure you want to decline this request?</h5>
+        <h5 class="modal-title pull-left">{{"REQUEST_DECLINE" | translate}}</h5>
       </div>
 
       <div class="modal-footer">
         <div class="">
-          <button class="btn btn-default" (click)="declineModal.hide()">CANCEL</button>
-          <button class="btn btn-primary"(click)="declineRequest()">OK</button>
+          <button class="btn btn-default" (click)="declineModal.hide()">{{"CANCEL" | translate}}</button>
+          <button class="btn btn-primary"(click)="declineRequest()">{{"OK" | translate}}}</button>
         </div>
       </div>
     </div>
@@ -188,12 +188,12 @@
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title pull-left">Are you sure you want to accept this request?</h5>
+        <h5 class="modal-title pull-left">{{"REQUEST_DECLINE" | translate}}</h5>
       </div>
       <div class="modal-footer">
         <div class="">
-          <button class="btn btn-default" (click)="acceptModal.hide()">CANCEL</button>
-          <button class="btn btn-primary"(click)="acceptRequest()">OK</button>
+          <button class="btn btn-default" (click)="acceptModal.hide()">{{"CANCEL" | translate}}</button>
+          <button class="btn btn-primary"(click)="acceptRequest()">{{"OK" | translate}}</button>
         </div>
       </div>
     </div>

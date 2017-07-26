@@ -9,104 +9,104 @@
             </div>
           </div>
           <div class="form-group">
-            <label class="control-label text-primary" for="inputLarge">Name</label>
+            <label class="control-label text-primary" for="inputLarge">{{"NAME" | translate }}</label>
             <input class="form-control input-sm " type="text" id="inputLarge" placeholder="first and last name" formControlName="userDisplayName">
           </div>
           <div class="form-group">
-            <label class="control-label text-primary" for="inputLarge">Life story</label>
+            <label class="control-label text-primary" for="inputLarge">{{"LIFE_STORY" | translate }}</label>
             <input class="form-control input-sm" type="text" id="inputLarge" placeholder="in 200 words or less" formControlName="userLifeStory">
           </div>
           <div class="form-group">
-            <label class="control-label text-primary" for="inputLarge">Date of birth</label>
+            <label class="control-label text-primary" for="inputLarge">{{"DATE_OF_BIRTH" | translate }}</label>
             <input class="form-control input-sm" type="text" id="inputLarge" placeholder="dd/mm/yyyy" formControlName="userBirthDate">
           </div>
           <div class="form-group">
-            <label class="control-label text-primary" for="inputLarge">phone</label>
+            <label class="control-label text-primary" for="inputLarge">{{"PHONE" | translate }}</label>
             <input class="form-control input-sm" type="text" id="inputLarge" placeholder="" formControlName="userPhone">
           </div>
           <div class="form-group">
-            <label class="control-label text-primary" for="inputLarge">Address</label>
+            <label class="control-label text-primary" for="inputLarge">{{"ADDRESS" | translate }}</label>
             <input class="form-control input-sm" type="text" id="inputLarge" placeholder="enter your address" formControlName="userAddress">
           </div>
           <div class="form-group">
-            <label class="control-label text-primary" for="inputLarge">Email</label>
+            <label class="control-label text-primary" for="inputLarge">{{"EMAIL" | translate }}</label>
             <input class="form-control input-sm" type="text" id="inputLarge" placeholder="email" formControlName="userEmail">
           </div>
           <div class="btn-group">
             <button class="btn btn-xs btn-default" style="margin-right:5px">
               <span class="glyphicon glyphicon-plus"></span>
-              interests
+              {{"INTERESTS" | translate }}
             </button>
             <button class="btn btn-xs btn-default">
               <span class="glyphicon glyphicon-plus"></span>
-              social profiles
+              {{"SOCIAL_PROFILES" | translate }}
             </button>
           </div>
           <!--Update button-->
-          <button class="btn btn-warning pull-right" (click)="updateProfile()">Update</button>
+          <button class="btn btn-warning pull-right" (click)="updateProfile()">{{"UPDATE" | translate }}</button>
         </form>
       </div>
       <div class="col-lg-4">
         <div class="well">
           <div class="row">
             <div class="col-lg-6">
-              <p class="lead">Checklist</p>
+              <p class="lead">{{"CHECKLIST" | translate }}</p>
             </div>
             <div class="col-lg-6">
               <button class="btn pull-right action-btn" (click)="isCollapsed = !isCollapsed">
-                <ng-container *ngIf="isCollapsed">View</ng-container>
-                <ng-container *ngIf="!isCollapsed">Close</ng-container>
+                <ng-container *ngIf="isCollapsed">{{"VIEW" | translate }}</ng-container>
+                <ng-container *ngIf="!isCollapsed">{{"CLOSE" | translate }}</ng-container>
               </button>
             </div>
           </div>
             <div [collapse]="isCollapsed">
                 <div class="">
-            <p class=""><small>Having a complete profile will increase your chance of getting requests or your requests being accepted</small></p>
-            <h6><strong>Mondatory</strong></h6>
+            <p class=""><small>{{"CHECKLIST_DESCRIPTION" | translate }}</small></p>
+            <h6><strong>{{"MANDATORY" | translate }}</strong></h6>
           <p>
             <span class="glyphicon glyphicon-ok text-primary" *ngIf="user.displayName"></span>
             <span class="glyphicon glyphicon-remove text-danger" *ngIf="!user.displayName"></span>
-             Name
+             {{"NAME" | translate}}
           </p>
           <p>
             <span class="glyphicon glyphicon-ok text-primary" *ngIf="user.email"></span>
             <span class="glyphicon glyphicon-remove text-danger" *ngIf="!user.email"></span> 
-             Email
+             {{"EMAIL" | translate}}
           </p>
           <p>
             <span class="glyphicon glyphicon-ok text-primary" *ngIf="user.phone"></span>
             <span class="glyphicon glyphicon-remove text-danger" *ngIf="!user.phone"></span>
-             Phone
+              {{"PHONE" | translate}}
           </p>
           <p>
             <span class="glyphicon glyphicon-ok text-primary" *ngIf="user.address"></span>
             <span class="glyphicon glyphicon-remove text-danger" *ngIf="!user.address"></span>
-            Address
+             {{"ADDRESS" | translate}}
             </p>
-          <h6><strong>Good to have</strong></h6>
+          <h6><strong>{{"NOT_MANDATORY" | translate }}</strong></h6>
           <p>
             <span class="glyphicon glyphicon-ok text-primary" *ngIf="user.photoUrl"></span>
             <span class="glyphicon glyphicon-remove text-danger" *ngIf="!user.photoUrl"></span>
-              Photo</p>
+              {{"PHOTO" | translate}}</p>
           <p>
             <span class="glyphicon glyphicon-ok text-primary" *ngIf="user.lifeStory"></span>
             <span class="glyphicon glyphicon-remove text-danger" *ngIf="!user.lifeStory"></span>
-             Life Story
+             {{"LIFE_STORY" | translate}}
           </p>
           <p>
             <span class="glyphicon glyphicon-ok text-primary" *ngIf="user.birthDate"></span>
             <span class="glyphicon glyphicon-remove text-danger" *ngIf="!user.birthDate"></span>
-             Date of Birth
+             {{"DATE_OF_BIRTH" | translate}}
           </p>
           <p>
             <span class="glyphicon glyphicon-ok text-primary" *ngIf="user.socialProfiles"></span>
             <span class="glyphicon glyphicon-remove text-danger" *ngIf="!user.socialProfiles"></span>
-             Social Profiles
+             {{"SOCIAL_PROFILES" | translate}}
           </p>
           <p>
             <span class="glyphicon glyphicon-ok text-primary" *ngIf="user.interests"></span>
             <span class="glyphicon glyphicon-remove text-danger" *ngIf="!user.interests"></span>
-             Interests
+             {{"interests" | translate}}
           </p>
           </div>        
             </div>

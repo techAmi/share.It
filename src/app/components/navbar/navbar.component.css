@@ -53,3 +53,27 @@
 .dropdown:hover .dropdown-content{
     display: block;
 }
+
+a {
+    text-decoration: none
+}
+
+.navbar-inverse .navbar-brand {
+    color: #2196f3;
+}
+.navbar-inverse .navbar-nav>li>a {
+    color: #2196f3;
+}
+
+.nav>li>a:hover, .nav>li>a:focus {
+    text-decoration: none;
+    background-color: #eeeeee;
+}
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    .dropdown-content {
+        margin-left: 0;
+    }
+
+}

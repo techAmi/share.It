@@ -9,7 +9,7 @@
                     <p class="lead"><strong>{{user.displayName}}</strong></p>
                 </div>
                 <div class="row">
-                    <a class="btn btn-default btn-large" (click)="messageBtnClicked()" *ngIf="hideMessageBtn" >Message</a>
+                    <a class="btn btn-default btn-large" (click)="messageBtnClicked()" *ngIf="hideMessageBtn" >{{"MESSAGE" | translate}}</a>
 
                 </div>
             </div>
@@ -33,7 +33,7 @@
     </div>
     <div class="container">
         <div class="row-fluid">
-            <h3>Items</h3>
+            <h3>{{"ITEMS" | translate}}</h3>
             <div class="">
                 <div class="col-lg-3 item" *ngFor="let item of items">
                     <a routerLink="/items/{{item.$key}}">

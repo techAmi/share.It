@@ -3,7 +3,7 @@
         <div class="row">
             <a routerLink="/reviews">
                 <div class="col-lg-2 col-md-2 well">
-                    <p class="lead text-primary"> REVIEWS</p>
+                    <p class="lead text-primary"> {{"REVIEWS" | translate}}</p>
                     <br>
                     <h2>{{reviewsCount}}</h2>
                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
@@ -11,7 +11,7 @@
             </a>
             <a routerLink="/my-items">
                 <div class="col-lg-2 col-md-2 well">
-                    <p class="lead text-primary">MY ITEMS</p>
+                    <p class="lead text-primary">{{"MY_ITEMS" | translate}}</p>
                     <br>
                     <h2>{{myItemsCount}}</h2>
                     <i class="fa fa-th-list" aria-hidden="true"></i>
@@ -19,14 +19,14 @@
             </a>
             <a routerLink="/borrowedItems">
                 <div class="col-lg-2 col-md-2 well">
-                    <p class="lead text-primary">BORROWED ITEMS</p>
+                    <p class="lead text-primary">{{"BORROWED_ITEMS" | translate}}</p>
                     <h2 style="padding-top: 18px">{{borrowedItemsCount}}</h2>
                     <span class=" glyphicon glyphicon-import gl-5x" aria-hidden="true"></span>
                 </div>
             </a>
             <a routerLink="/lentItems">
                 <div class="col-lg-2 col-md-2 well">
-                    <p class="lead text-primary">LENT ITEMS</p>
+                    <p class="lead text-primary">{{"LENT_ITEMS" | translate}}</p>
                     <br>
                     <h2>{{lentItemsCount}}</h2>
                     <span class="glyphicon glyphicon-export gl-5x" aria-hidden="true"></span>
@@ -35,13 +35,13 @@
         </div>
         <div class="row">
             <div class="col-lg-2 col-md-2 well">
-                <p class="lead text-primary">MONEY SPENT</p>
+                <p class="lead text-primary">{{"MONEY_SPENT" | translate}}</p>
                 <br>
                 <h2>0</h2>
                 <i class="fa fa-credit-card" aria-hidden="true"></i>
             </div>
             <div class="col-lg-2 col-md-2 well">
-                <p class="lead text-primary">MONEY EARNED</p>
+                <p class="lead text-primary">{{"MONEY_EARNED" | translate}}</p>
                 <br>
                 <h2>0</h2>
                 <i class="fa fa-jpy" aria-hidden="true"></i>

@@ -1,7 +1,7 @@
 .jumbotron {
     background-color: rgba(4,81,121,.8);
     color: #ffffff;
-    height: 100vh;
+    /* height: 100vh; */
     padding-top: 10em
 }
 
@@ -36,9 +36,7 @@ h1 {
     display: inline-block;
 }
 
-.img-responsive {
-    min-height: 174px;
-}
+
 
 .img-thumbnail{
     width: 40px;
@@ -59,3 +57,16 @@ h1 {
     margin-bottom: 20px;
 }
 
+@media only screen and (min-width: 768px) {
+    /* For desktop: */
+    .img-responsive {
+        min-height: 174px !important ;
+    }
+}
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    .img-responsive {
+        min-height: 57px !important ;
+        max-height: 57px;
+    }
+}

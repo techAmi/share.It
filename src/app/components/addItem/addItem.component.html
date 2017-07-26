@@ -4,27 +4,27 @@
       <div class="col-lg-6">
         <div class="panel panel-default">
           <div class="panel-body">
-            <h4> Item Details </h4>
+            <h4> {{"ITEM_DETAILS" | translate}} </h4>
             <!--First step form-->
             <ng-container *ngIf="!toNextStep">
-              <p class="text-muted">Step 1 of 2</p>
+              <p class="text-muted">{{"STEP_ONE" | translate}}</p>
               <!--step one form-->
               <form [formGroup]="addItemStep1Form">
                 <!--Item name-->
                   <div class="form-group">
-                    <label class="control-label text-primary" for="inputLarge">Item Name</label>
+                    <label class="control-label text-primary" for="inputLarge">{{"ITEM_NAME" | translate}}</label>
                     <input class="form-control input-lg" type="text" id="inputLarge" placeholder="name your item" formControlName="itemName">
                   </div>
                 <!--Item original price-->
                   <div class="form-group">
-                    <label class="control-label text-primary" for="inputLarge">Original Price</label>
+                    <label class="control-label text-primary" for="inputLarge">{{"ORIGINAL_PRICE" | translate}}</label>
                     <input class="form-control input-lg" type="text" id="inputLarge" placeholder="tell us your item's original price" formControlName="itemOriginalPrice">
                   </div>
                   <br>
                 <!--Item category-->
                   <div class="form-group">
                     <label for="select" class="control-label text-primary" for="select_category">
-                          Category
+                          {{"CATEGORY" | translate}}
                     </label>
                       <select class="form-control" id="select_category" formControlName="itemCategory">
                         <option *ngFor="let category of categories" [selected]="categories.name == 'Other'" >{{category.name}}</option>
@@ -32,37 +32,37 @@
                   </div>
                 <!--Item year bought-->
                   <div class="form-group">
-                    <label class="control-label text-primary" for="select_year_bought">Year bought</label>
+                    <label class="control-label text-primary" for="select_year_bought">{{"YEAR_BOUGHT" | translate}}</label>
                       <select class="form-control" id="select_year_bought" formControlName="itemYearBought">
                         <option>Year bought</option>
                       </select>
                   </div>
                 <!--Item Condition -->
                   <div class="form-group">
-                    <label class="control-label text-primary" for="select_condition" >Item Condition</label>
+                    <label class="control-label text-primary" for="select_condition" >{{"ITEM_CONDITION" | translate}}</label>
                       <select class="form-control" id="select_condition" formControlName="itemCondition">
                         <option *ngFor="let condition of conditions" [selected]="conditions.name == 'New'">{{condition.name}}</option>
                       </select>
                   </div>
                 <!--To next step button-->
-                  <button class="btn btn-primary pull-right" (click)="onNextBtnClick()">Next</button>
+                  <button class="btn btn-primary pull-right" (click)="onNextBtnClick()">{{"NEXT" | translate}}</button>
               </form>
             </ng-container>
 
             <!--Second step form-->
             <ng-container *ngIf="toNextStep">
-              <p class="text-muted">Step 2 of 2</p>
+              <p class="text-muted">{{"STEP_TWO" | translate }}</p>
             <!--step one form-->
             <form [formGroup]="addItemStep2Form">
               <!--uplaod image-->
               <image-upload (emitImageUrl)="imageUrlChange($event)"></image-upload>
               <!--Item description-->
               <div class="form-group">
-                <label class="control-label text-primary" for="description">Description</label>
+                <label class="control-label text-primary" for="description">{{"DESCRIPTION" | translate}}</label>
                 <textarea class="form-control" rows="3" id="description" formControlName="itemDescription"></textarea>
               </div>
               <!--To submit step button-->
-                <button class="btn btn-primary pull-right" (click)="onSubmitBtnClick()">Submit</button>
+                <button class="btn btn-primary pull-right" (click)="onSubmitBtnClick()">{{"SUBMIT" | translate}}</button>
             </form>
             </ng-container>
             

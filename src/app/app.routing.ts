@@ -24,6 +24,7 @@ import { LentItemsComponent } from './components/lentItems/lent-items.component'
 import { ProfileComponent } from './components/profile/profile.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { AccountComponent } from './components/account/account.component';
+import { SearchComponent } from './components/search/search.component';
 
 const appRouters: Routes = [
     {
@@ -136,6 +137,11 @@ const appRouters: Routes = [
     {
         path: 'account',
         component: AccountComponent
+    },
+
+    {
+        path: 'search/:keyword',
+        component: SearchComponent
     }
 
 

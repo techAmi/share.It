@@ -25,6 +25,7 @@ export class LoginComponent {
     this.isModalShown = false;
   }
   loginWithGoogle() {
+    console.log('login with google btn clicked');
     this.as.loginWithGoogle();
   }
 
@@ -34,5 +35,8 @@ export class LoginComponent {
 
   loginWithTwitter() {
     this.as.loginWithTwitter();
+  }
+  loginBtnClick(){
+    console.log('login btn was clicked');
   }
 }

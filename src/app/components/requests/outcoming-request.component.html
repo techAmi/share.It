@@ -4,14 +4,14 @@
       <div class="row">
         <div class="col-lg-12">
           <p class="lead">
-            {{request.requestedItem.itemOwner.displayName}} has accepted to lend you theire 
+            {{request.requestedItem.itemOwner.displayName}} {{"REQUEST_ACCEPTED" | translate}}
             {{request.requestedItem.itemName}}
           </p>
         </div>
       </div>
     </ng-container>
     <ng-container *ngIf="request && request.status === 0">
-      <p class="lead"> we're waiting for your request to be accepted</p>
+      <p class="lead"> {{"WAITING_FOR_REQUEST" | translate}}</p>
     </ng-container>
   </div>
 </div>
