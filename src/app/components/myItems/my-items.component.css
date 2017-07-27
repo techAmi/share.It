@@ -19,3 +19,19 @@ a {
 a:hover{
   background-color: rgb(202, 235, 247);
 }
+
+.img-responsive {
+  height: 150px;
+}
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    .img-responsive {
+        min-height: 57px !important ;
+        max-height: 57px;
+        margin: auto
+    }
+    .main{
+      padding-top: 6em; 
+    }
+}

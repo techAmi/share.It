@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   moduleId: module.id,
@@ -10,22 +11,25 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LoginComponent {
 
-  @ViewChild('autoShowModal') public autoShowModal: ModalDirective;
+  @ViewChild('autoShownModal') public autoShowModal: ModalDirective;
 
   public isModalShown = false;
-  constructor (private as: AuthService) {
+  constructor (
+    private as: AuthService,
+    private _router: Router) {
     this.isModalShown = true;
+
   }
 
   public hideModal(): void {
     this.autoShowModal.hide();
+    this._router.navigate(['']);
   }
 
   public onHidden() {
     this.isModalShown = false;
   }
   loginWithGoogle() {
-    console.log('login with google btn clicked');
     this.as.loginWithGoogle();
   }
 
@@ -36,7 +40,5 @@ export class LoginComponent {
   loginWithTwitter() {
     this.as.loginWithTwitter();
   }
-  loginBtnClick(){
-    console.log('login btn was clicked');
-  }
+
 }

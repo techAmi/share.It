@@ -31,3 +31,18 @@ a, a:hover{
 #message-box{
     visibility: hidden;
 }
+.img-circle {
+    height: 120px;
+    width: auto;
+}
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    .img-circle {
+        height: 70px;
+        height: auto;
+    }
+    hr{
+        display: none;
+    }
+}

@@ -25,6 +25,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { AccountComponent } from './components/account/account.component';
 import { SearchComponent } from './components/search/search.component';
+import { CategoriesComponent } from './components/categories/categories.component';
 
 const appRouters: Routes = [
     {
@@ -142,7 +143,13 @@ const appRouters: Routes = [
     {
         path: 'search/:keyword',
         component: SearchComponent
+    },
+
+    {
+        path: 'categories/:category',
+        component: CategoriesComponent
     }
+
 
 
 ];

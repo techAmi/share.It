@@ -1,5 +1,5 @@
 .main {
-  padding-top: 10em;
+  margin-top: 10em;
 }
 .well {
   margin: 10px;
@@ -12,3 +12,11 @@
 a{
   text-decoration: none;
 }
+
+  @media only screen and (max-width: 768px) {
+    /* For Mobile: */
+
+    .main {
+      margin-top: 6em;
+    }
+  }

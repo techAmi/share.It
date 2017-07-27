@@ -3,6 +3,7 @@ import { User } from './user';
 export interface Item {
   $key?: string;
   itemCategory: string;
+  itemBranche?: string;
   itemName: string;
   itemCondition: string;
   itemOriginalPrice: string;

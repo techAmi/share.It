@@ -35,6 +35,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { AccountComponent } from './components/account/account.component';
 import { SearchComponent } from './components/search/search.component';
+import { CategoriesComponent } from './components/categories/categories.component';
 
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { FormsModule } from '@angular/forms';
@@ -42,6 +43,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 
 import { AuthService } from './services/auth.service';
 import { FirebaseService } from './services/firebase.service';
+import { DataSharingService } from './services/data-sharing.service';
 import { GlobalEventsManagerService } from './services/global.event.manager.service';
 import { UploadComponent } from './utils/image-upload.component';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -98,7 +100,8 @@ export function HttpLoaderFactory(http: Http) {
     ProfileComponent,
     EditProfileComponent,
     AccountComponent,
-    SearchComponent
+    SearchComponent,
+    CategoriesComponent
   ],
   imports: [
     HttpModule,
@@ -128,6 +131,7 @@ export function HttpLoaderFactory(http: Http) {
     AuthService,
     AngularFireAuth,
     FirebaseService,
+    DataSharingService,
     GlobalEventsManagerService],
   bootstrap: [AppComponent]
 })

@@ -12,27 +12,57 @@
             <label class="control-label text-primary" for="inputLarge">{{"NAME" | translate }}</label>
             <input class="form-control input-sm " type="text" id="inputLarge" placeholder="first and last name" formControlName="userDisplayName">
           </div>
+          <div *ngIf="formErrors.userDisplayName" class="alert alert-danger" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span>
+            {{formErrors.userDisplayName}}
+          </div>
           <div class="form-group">
             <label class="control-label text-primary" for="inputLarge">{{"LIFE_STORY" | translate }}</label>
             <input class="form-control input-sm" type="text" id="inputLarge" placeholder="in 200 words or less" formControlName="userLifeStory">
+          </div>
+          <div *ngIf="formErrors.userLifeStory" class="alert alert-danger" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span>
+            {{formErrors.userLifeStory}}
           </div>
           <div class="form-group">
             <label class="control-label text-primary" for="inputLarge">{{"DATE_OF_BIRTH" | translate }}</label>
             <input class="form-control input-sm" type="text" id="inputLarge" placeholder="dd/mm/yyyy" formControlName="userBirthDate">
           </div>
+          <div *ngIf="formErrors.userBirthDate" class="alert alert-danger" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span>
+            {{formErrors.userBirthDate}}
+          </div>
           <div class="form-group">
             <label class="control-label text-primary" for="inputLarge">{{"PHONE" | translate }}</label>
             <input class="form-control input-sm" type="text" id="inputLarge" placeholder="" formControlName="userPhone">
+          </div>
+          <div *ngIf="formErrors.userPhone" class="alert alert-danger" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span>
+            {{formErrors.userPhone}}
           </div>
           <div class="form-group">
             <label class="control-label text-primary" for="inputLarge">{{"ADDRESS" | translate }}</label>
             <input class="form-control input-sm" type="text" id="inputLarge" placeholder="enter your address" formControlName="userAddress">
           </div>
+          <div *ngIf="formErrors.userAddress" class="alert alert-danger" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span>
+            {{formErrors.userAddress}}
+          </div>
           <div class="form-group">
             <label class="control-label text-primary" for="inputLarge">{{"EMAIL" | translate }}</label>
             <input class="form-control input-sm" type="text" id="inputLarge" placeholder="email" formControlName="userEmail">
           </div>
-          <div class="btn-group">
+          <div *ngIf="formErrors.userEmail" class="alert alert-danger" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span>
+            {{formErrors.userEmail}}
+          </div>
+          <div class="btn-group social-profiles-sp">
             <button class="btn btn-xs btn-default" style="margin-right:5px">
               <span class="glyphicon glyphicon-plus"></span>
               {{"INTERESTS" | translate }}
@@ -46,10 +76,10 @@
           <button class="btn btn-warning pull-right" (click)="updateProfile()">{{"UPDATE" | translate }}</button>
         </form>
       </div>
-      <div class="col-lg-4">
+      <div class="col-lg-4 checklist-sp">
         <div class="well">
           <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-6 col-xs-6">
               <p class="lead">{{"CHECKLIST" | translate }}</p>
             </div>
             <div class="col-lg-6">

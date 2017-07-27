@@ -8,6 +8,11 @@
             <!--First step form-->
             <ng-container *ngIf="!toNextStep">
               <p class="text-muted">{{"STEP_ONE" | translate}}</p>
+              <div *ngIf="!isValid" class="alert alert-danger" role="alert">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span class="sr-only">Error:</span>
+                Your form is not valid. Make sure required fields are not empty.
+              </div>
               <!--step one form-->
               <form [formGroup]="addItemStep1Form">
                 <!--Item name-->
@@ -15,10 +20,20 @@
                     <label class="control-label text-primary" for="inputLarge">{{"ITEM_NAME" | translate}}</label>
                     <input class="form-control input-lg" type="text" id="inputLarge" placeholder="name your item" formControlName="itemName">
                   </div>
+                  <div *ngIf="formStep1Errors.itemName" class="alert alert-danger" role="alert">
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                    <span class="sr-only">Error: </span>
+                    {{formStep1Errors.itemName}}
+                  </div>
                 <!--Item original price-->
                   <div class="form-group">
                     <label class="control-label text-primary" for="inputLarge">{{"ORIGINAL_PRICE" | translate}}</label>
                     <input class="form-control input-lg" type="text" id="inputLarge" placeholder="tell us your item's original price" formControlName="itemOriginalPrice">
+                  </div>
+                  <div *ngIf="formStep1Errors.itemOriginalPrice" class="alert alert-danger" role="alert">
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                    <span class="sr-only">Error: </span>
+                    {{formStep1Errors.itemOriginalPrice}}
                   </div>
                   <br>
                 <!--Item category-->
@@ -30,11 +45,38 @@
                         <option *ngFor="let category of categories" [selected]="categories.name == 'Other'" >{{category.name}}</option>
                       </select>
                   </div>
+                    <div *ngIf="formStep1Errors.itemCategory" class="alert alert-danger" role="role">
+                      <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                      <span class="sr-only">Error: </span>
+                      {{formStep1Errors.itemCategory}}
+                    </div>
+                <!--Item branche-->
+                  <div class="form-group">
+                    <label for="select" class="control-label text-primary" for="select_branche">
+                          {{"BRANCHE" | translate}}
+                    </label>
+                      <select class="form-control" id="select_branche" formControlName="itemBranche">
+                        <option *ngFor="let branche of branches" >{{branche.name}}</option>
+                      </select>
+                  </div>
+                    <div *ngIf="formStep1Errors.itemBranche" class="alert alert-danger" role="alert">
+                      <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                      <span class="sr-only">Error: </span>
+                      {{formStep1Errors.itemBranche}}
+                    </div>
                 <!--Item year bought-->
                   <div class="form-group">
                     <label class="control-label text-primary" for="select_year_bought">{{"YEAR_BOUGHT" | translate}}</label>
                       <select class="form-control" id="select_year_bought" formControlName="itemYearBought">
-                        <option>Year bought</option>
+                        <option selected>2017</option>
+                        <option value="2016">2016</option>
+                        <option value="2015">2015</option>
+                        <option value="2014">2014</option>
+                        <option value="2013">2013</option>
+                        <option value="2012">2012</option>
+                        <option value="2011">2011</option>
+                        <option value="2010">2010</option>
+                        <option value="Older">Older</option>
                       </select>
                   </div>
                 <!--Item Condition -->
@@ -44,6 +86,11 @@
                         <option *ngFor="let condition of conditions" [selected]="conditions.name == 'New'">{{condition.name}}</option>
                       </select>
                   </div>
+                    <div *ngIf="formStep1Errors.itemCondition" class="alert alert-danger" >
+                      <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                      <span class="sr-only">Error: </span>
+                      {{formStep1Errors.itemCondition}}
+                    </div>
                 <!--To next step button-->
                   <button class="btn btn-primary pull-right" (click)="onNextBtnClick()">{{"NEXT" | translate}}</button>
               </form>
@@ -52,6 +99,11 @@
             <!--Second step form-->
             <ng-container *ngIf="toNextStep">
               <p class="text-muted">{{"STEP_TWO" | translate }}</p>
+              <div *ngIf="!isValid" class="alert alert-danger" role="alert">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span class="sr-only">Error:</span>
+                Your form is not valid. Make sure required fields are not empty.
+              </div>
             <!--step one form-->
             <form [formGroup]="addItemStep2Form">
               <!--uplaod image-->
@@ -60,6 +112,11 @@
               <div class="form-group">
                 <label class="control-label text-primary" for="description">{{"DESCRIPTION" | translate}}</label>
                 <textarea class="form-control" rows="3" id="description" formControlName="itemDescription"></textarea>
+              </div>
+              <div *ngIf="formStep2Errors.itemDescription" class="alert alert-danger">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span class="sr-only">Error: </span>
+                {{formStep2Errors.itemDescription}}
               </div>
               <!--To submit step button-->
                 <button class="btn btn-primary pull-right" (click)="onSubmitBtnClick()">{{"SUBMIT" | translate}}</button>

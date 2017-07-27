@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { FirebaseService } from '../../services/firebase.service';
-
+import { DataSharingService } from '../../services/data-sharing.service';
 import { Category } from '../../models/category';
 import { Item } from '../../models/item';
 import { Branche } from '../../models/branche';
@@ -22,7 +22,8 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private as: AuthService,
-    private _firebaseService: FirebaseService
+    private _firebaseService: FirebaseService,
+    private _dataService: DataSharingService
    ) {
     if (this.as.getUserInformation() != null) {
       this.isLoggedIn = this.as.getUserInformation().isLoggedIn;
@@ -54,5 +55,10 @@ export class HomeComponent implements OnInit {
         this.recentlyAddedItems = items;
       });
     }
+    this._dataService.branches = this.branches;
+  }
+  brancheClick(branche) {
+    console.log('branche was clicked', branche);
+    this._dataService.category = branche;
   }
 }

@@ -17,3 +17,14 @@
 a{
   text-decoration: none;
 }
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+  .main {
+    padding-top: 5em;
+  }
+  .img-responsive {
+    width: 40px;
+    height: auto
+  }
+}

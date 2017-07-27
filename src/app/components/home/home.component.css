@@ -4,7 +4,9 @@
     /* height: 100vh; */
     padding-top: 10em
 }
-
+a{
+    text-decoration: none;
+}
 h1 {
     color: #ffffff
 }
@@ -32,7 +34,8 @@ h1 {
     cursor: pointer
 }
 .profile-info:hover{
-    background-color: beige;
+    background-color: rgb(252, 252, 252);
+    opacity: 0.9;
     display: inline-block;
 }
 
@@ -68,5 +71,8 @@ h1 {
     .img-responsive {
         min-height: 57px !important ;
         max-height: 57px;
+    }
+    .jumbotron{
+        padding-top: 6em;
     }
 }

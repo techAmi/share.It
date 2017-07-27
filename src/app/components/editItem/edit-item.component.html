@@ -1,8 +1,8 @@
 <!--<button class="btn btn-primary" (click)="lgModal.show()">Large modal</button>-->
-<a  (click)="editItem()"> <h5>{{"" | translate }}</h5> </a>
+<a  (click)="editItem()"> <h5>{{"EDIT" | translate }}</h5> </a>
 <div class="container">
 <!--Right side modal-->
-<div bsModal #itemDetailsModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="left:600px !important" [config]="{ignoreBackdropClick: true}">
+<div bsModal #itemDetailsModal="bs-modal" class="modal fade right-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" [config]="{ignoreBackdropClick: true}">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -87,7 +87,7 @@
   </div>
 </div>
 <!--left side modal-->
-<div bsModal #itemImageModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="right:600px !important" [config]="{ ignoreBackdropClick: true }">
+<div bsModal #itemImageModal="bs-modal" class="modal fade left-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" [config]="{ ignoreBackdropClick: true }">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-body">

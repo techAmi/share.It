@@ -136,7 +136,14 @@ export class FirebaseService {
 
     return this.recentlyAddedItems;
   }
-
+  getItemsByBranche(branche: String) {
+    return this._db.list('/items', {
+      query: {
+        orderByChild: 'itemBranche',
+        equalTo: branche
+      }
+    })
+  }
   filterRecentlyAddedItems() {
     let filtredRecentlyAddedItems: Item[];
     filtredRecentlyAddedItems = [];
