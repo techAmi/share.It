@@ -23,6 +23,7 @@ export class NavbarComponent {
     this.globalEventManager.switchNavBarEmitter.subscribe((mode) => {
       if (mode !== null ) {
         this.switchNavbar = mode;
+        console.log('the navbar mode ', this.switchNavbar)
       }
       if (this._firebaseService.getCurrentUser() != null) {
       this.profilePhotoUrl = this._firebaseService.getCurrentUser().photoUrl;

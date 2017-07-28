@@ -12,10 +12,18 @@ import { Request } from '../../models/request';
 
 export class OutcomingRequestComponent implements OnInit {
   public request: Request;
-
+  public isDeclinedRequestModalShown = false;
+  public isAcceptedRequestModalShown = false;
+  public isOpenRequestModalShown = false;
+  public hideMessageBtn = false;
   constructor(
     private _route: ActivatedRoute,
+    private _router: Router,
     private _firebaseService: FirebaseService) {
+      this.isDeclinedRequestModalShown = true;
+      this.isAcceptedRequestModalShown = true;
+      this.isOpenRequestModalShown = true;
+      this.hideMessageBtn = true;
   }
 
   ngOnInit() {
@@ -31,5 +39,24 @@ export class OutcomingRequestComponent implements OnInit {
         });
       });
     });
+  }
+  hideModal() {
+    this.isDeclinedRequestModalShown = false;
+    this._router.navigate(['requests']);
+  }
+  searchItem(searchWord: string) {
+    this._router.navigate(['search/' + searchWord]);
+  }
+
+  deleteRequest(request: Request) {
+    this._firebaseService.deleteRequest(request);
+    this._router.navigate(['requests']);
+  }
+  messageBtnclicked() {
+    this.hideMessageBtn = false;
+  }
+
+  goToUser() {
+    this._router.navigate(['user/' + this.request.requestedItem.itemOwner.userUid]);
   }
 }

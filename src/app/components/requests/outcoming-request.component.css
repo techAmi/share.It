@@ -1,3 +1,23 @@
 .main {
   padding-top: 10em;
 }
+
+/* @media screen and (min-width: 768px) { 
+  .modal:before {
+    display: inline-block;
+    vertical-align: middle;
+    content: " ";
+    height: 100%;
+  }
+} */
+
+.declined-request {
+  color:#a94442;
+  background-color:#f2dede;
+  border-color:#ebccd1
+}
+.accepted-request{
+  color: #3c763d;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+}

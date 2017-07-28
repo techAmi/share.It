@@ -1,5 +1,5 @@
 .main {
-  padding-top: 10em;
+  padding-top: 6em;
 }
 .well {
   /* margin: 10px; */
@@ -78,4 +78,13 @@ ul{
 }
 .fa{
   font-size: 2rem;
+}
+.img-circle {
+  width: 70px;
+  height: auto;
+}
+.declined-request {
+  color:#a94442;
+  background-color:#f2dede;
+  border-color:#ebccd1
 }

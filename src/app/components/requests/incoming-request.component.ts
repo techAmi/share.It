@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FirebaseService } from '../../services/firebase.service';
 import { Request } from '../../models/request';
+import { ModalDirective } from 'ngx-bootstrap/modal';
 
 @Component({
   moduleId: module.id,
@@ -13,11 +14,20 @@ export class IncomingRequestComponent implements OnInit {
 
   public request: Request;
   public isCollapsed = true;
+  public msgVal = '';
+  public requestStatus = 2; // declined by default
+  public showAlert = false;
+  @ViewChild('acceptedRequestModal') public acceptedRequestModal: ModalDirective;
+  public isAcceptedRequestModalShown = false;
+  public isDeclinedRequestModalShown = false;
+  public hideMessageBtn = true;
   constructor(
     private _route: ActivatedRoute,
+    private _router: Router,
     private _firebaseService: FirebaseService
   ) {
-
+    this.isAcceptedRequestModalShown = true;
+    this.isDeclinedRequestModalShown = true;
   }
 
   ngOnInit() {
@@ -46,4 +56,39 @@ export class IncomingRequestComponent implements OnInit {
     this._firebaseService.updateRequest(this.request.$key, this.request);
     // TODO: close the modal after a successfull operation
   }
+
+  hideAcceptedRequestModal() {
+    this.isAcceptedRequestModalShown = false;
+    this._router.navigate(['requests'])
+  }
+
+  messageBtnClicked() {
+    this.hideMessageBtn = false; // if the button was clicked hide msg button
+  }
+
+  sendMessage(msg: string) {
+    console.log('message to send ', msg);
+    this._firebaseService.appendMessage(msg, this.request.requestFrom);
+    this.msgVal = '';
+  }
+
+  cancelBtnClicked() {
+    this._router.navigate(['requests']);
+  }
+  changeStatus() {
+    console.log('the status ', this.requestStatus);
+    if (this.requestStatus == 2) {
+      return;
+    } else if (this.requestStatus == 3 || this.requestStatus == 0) {
+      this.request.status = Number(this.requestStatus);
+      this._firebaseService.updateRequest(this.request.$key, this.request);
+      this._router.navigate(['requests']);
+    }
+    console.log('request after update', this.request);
+  }
+
+
+
+
+
 }

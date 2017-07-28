@@ -7,6 +7,7 @@ import { HttpModule, Http } from '@angular/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { AlertModule } from 'ngx-bootstrap';
+import { AccordionModule } from 'ngx-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -33,7 +34,6 @@ import { BorrowedItemsComponent } from './components/borrowedItems/borrowed-item
 import { LentItemsComponent } from './components/lentItems/lent-items.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
-import { AccountComponent } from './components/account/account.component';
 import { SearchComponent } from './components/search/search.component';
 import { CategoriesComponent } from './components/categories/categories.component';
 
@@ -99,7 +99,6 @@ export function HttpLoaderFactory(http: Http) {
     LentItemsComponent,
     ProfileComponent,
     EditProfileComponent,
-    AccountComponent,
     SearchComponent,
     CategoriesComponent
   ],
@@ -114,6 +113,7 @@ export function HttpLoaderFactory(http: Http) {
     TabsModule.forRoot(),
     BsDropdownModule.forRoot(),
     CollapseModule.forRoot(),
+    AccordionModule.forRoot(),
     ReactiveFormsModule,
     OverlayModule,
     DatePickerModule,

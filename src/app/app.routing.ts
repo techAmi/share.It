@@ -23,7 +23,6 @@ import { BorrowedItemsComponent } from './components/borrowedItems/borrowed-item
 import { LentItemsComponent } from './components/lentItems/lent-items.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
-import { AccountComponent } from './components/account/account.component';
 import { SearchComponent } from './components/search/search.component';
 import { CategoriesComponent } from './components/categories/categories.component';
 
@@ -133,11 +132,6 @@ const appRouters: Routes = [
     {
         path: 'edit-profile',
         component: EditProfileComponent
-    },
-
-    {
-        path: 'account',
-        component: AccountComponent
     },
 
     {

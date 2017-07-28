@@ -1,17 +1,105 @@
 <div class="main">
   <div class="container">
+    <!--if the request is accepted-->
     <ng-container *ngIf="request && request.status === 3">
-      <div class="row">
-        <div class="col-lg-12">
-          <p class="lead">
-            {{request.requestedItem.itemOwner.displayName}} {{"REQUEST_ACCEPTED" | translate}}
-            {{request.requestedItem.itemName}}
-          </p>
+      <div *ngIf="isAcceptedRequestModalShown" [config]="{ show: true }" (onHidden)="onHidden()" bsModal #autoShownModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+          <div class="modal-content accepted-request">
+            <div class="modal-header">
+              <h4 class="modal-title pull-left" style="color:#3c763d;"><i class="fa fa-smile-o" aria-hidden="true"></i> Congrats!</h4>
+              <button type="button" class="close pull-right" aria-label="Close" (click)="hideModal()">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p class="lead ">
+                {{request.requestedItem.itemOwner.displayName}} {{"REQUEST_ACCEPTED" | translate}}
+                {{request.requestedItem.itemName}}<br>
+                Contact {{request.requestedItem.itemOwner.displayName}} for further scheduling.
+              </p>
+              <button class="btn btn-defautl" (click)="messageBtnclicked()" *ngIf="hideMessageBtn"> Send Message </button>
+              <div class="row" >
+                <div (collapsed)="collapsed($event)"
+                  (expanded)="expanded($event)"
+                  class="card card-block card-header"
+                  *ngIf="!hideMessageBtn">
+                  <div class="well well-lg col-lg-8 col-lg-offset-1 col-xs-12" style="background-color:#d6e9c6;">
+                      <div class="form-group">
+                          <textarea class="form-control" rows="3" id="textArea" placeholder="Message" [(ngModel)]="msgVal"></textarea>
+                          <span class="help-block"></span>
+                          <button class="btn btn-success pull-right" (click)="sendMessage(msgVal)"><span class="glyphicon glyphicon-send"></span></button>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </ng-container>
+    <!--if the request is open-->
     <ng-container *ngIf="request && request.status === 0">
-      <p class="lead"> {{"WAITING_FOR_REQUEST" | translate}}</p>
+      <!-- <p class="lead"> {{"WAITING_FOR_REQUEST" | translate}}</p> -->
+      <div *ngIf="isOpenRequestModalShown" [config]="{ show: true }" (onHidden)="onHidden()" bsModal #openRequestModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title pull-left">
+                <i class="fa fa-meh-o" aria-hidden="true"></i>
+                {{"WAITING_FOR_REQUEST" | translate}}
+              </h4>
+              <button type="button" class="close pull-right" aria-label="Close" (click)="hideModal()">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p class="lead">If you are in a hurry, contact <a (click)="goToUser()" >{{request.requestedItem.itemOwner.displayName}}</a> to let them know</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <!--if the request is declined-->
+    <ng-container *ngIf="request && request.status === 2">
+      <div *ngIf="isDeclinedRequestModalShown" [config]="{ show: true }" (onHidden)="onHidden()" bsModal #autoShownModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog modal-md ">
+            <div class="modal-content declined-request">
+              <div class="modal-header">
+                <h4 class="modal-title pull-left" style="color:#a94442"><i class="fa fa-frown-o" aria-hidden="true"></i> Sorry!</h4>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="hideModal()">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p class="lead">the item owner declined your request.</p>
+              </div>
+              <div class="modal-footer text-center">
+                <div class="pull-right">
+                  <a class="btn btn-danger" (click)="deleteRequestModal.show()"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete this request</a>
+                  <a class="btn btn-default" (click)="searchItem(request.requestedItem.itemName)"><i class="fa fa-search" aria-hidden="true"></i> Search Items</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal fade" bsModal #deleteRequestModal="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h6 class="modal-title pull-left">This request will be deleted. continue?</h6>
+                  <button type="button" class="close pull-right" aria-label="Close" (click)="deleteRequestModal.hide()">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body" style="overflow:hidden">
+                  <div class="pull-right">
+                    <button class="btn btn-warning" (click)="deleteRequestModal.hide()">Cancel</button>
+                    <button class="btn btn-primary" (click)="deleteRequest(request)">OK</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
     </ng-container>
   </div>
 </div>

@@ -170,7 +170,9 @@ export class FirebaseService {
     FirebaseListObservable<Request[]>;
     return this.requests;
   }
-
+  deleteRequest(request: Request) {
+    return this.getRequests().remove(request.$key);
+  }
   filterRequests() {
     this.filteredRequests = {
       incomingRequests: [],

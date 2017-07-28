@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row" *ngIf="request">
       <ng-container *ngIf="request.status === 0"> <!--if the request is open-->
-              <div class="col-lg-4 well">
+        <div class="col-lg-4 well">
         <!--requester user info comes here -->
         <a routerLink="/user/{{request.requestFrom.userUid}}"> <!--Link to user details component-->
           <div class="row ">
@@ -84,80 +84,169 @@
         </div>
       </div>
       </ng-container>
+      <!--if the request was accepted-->
       <ng-container *ngIf="request.status === 3">
-        <div class="row">
-          <div class="col-lg-12 well">
-            <p class="lead">Thank you for accepting {{request.requestFrom.displayName}}'s request.</p>
-            <p class="lead">Please contact {{request.requestFrom.displayName}} and schedule the item sharing</p>
-            <button class="btn btn-default pull-right">{{"MESSAGE" | translate}}</button>
+        <div *ngIf="isAcceptedRequestModalShown" [config]="{ show: true }" (onHidden)="onHidden()" bsModal #acceptedRequestModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <div class="col-lg-11">
+                  <p class="lead">
+                    Thank you for accepting {{request.requestFrom.displayName}}'s request.<br>
+                    Please contact {{request.requestFrom.displayName}} and schedule the item sharing.
+                  </p>
+                </div>
+                <div class="col-lg-1">
+                  <button type="button" class="close pull-right" aria-label="Close" (click)="hideAcceptedRequestModal()">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="col-lg-2">
+                  <button class="btn btn-primary" (click)="messageBtnClicked()" *ngIf="hideMessageBtn">Message</button>
+                </div>
+                <div class="col-lg-2" [ngClass]="{'pull-left': !hideMessageBtn}">
+                  <a>Go to chatroom <i class="glyphicon-chevron-right glyphicon"></i></a> <!--TODO: add a link to chatroom-->
+                </div>
+              </div>
+              <div class="row">
+                <div (collapsed)="collapsed($event)"
+                            (expanded)="expanded($event)"
+                            
+                            class="card card-block card-header"
+                            *ngIf="!hideMessageBtn">
+                    <div class="well well-lg col-lg-8 col-lg-offset-1 col-xs-12">
+                        <div class="form-group">
+                            <textarea class="form-control" rows="3" id="textArea" placeholder="Message" [(ngModel)]="msgVal"></textarea>
+                            <span class="help-block"></span>
+                            <button class="btn btn-primary pull-right" (click)="sendMessage(msgVal)"><span class="glyphicon glyphicon-send"></span></button>
+                        </div>
+                    </div>
+                </div>
+              </div>
+              <div class="modal-body">
+                <h5>Request Details</h5>
+                <accordion>
+                  <accordion-group #group>
+                    <div accordion-heading>
+                      Requester
+                      <i class="pull-right float-xs-right glyphicon"
+                        [ngClass]="{'glyphicon-chevron-down': group?.isOpen, 'glyphicon-chevron-right': !group?.isOpen}"></i>
+                    </div>
+                    <div class="col-lg-2">
+                      <img class="img-responsive img-circle" [src]="request.requestFrom.photoUrl">
+                    </div>
+                    <div class="col-lg-2">
+                      <p class="lead">{{request.requestFrom.displayName}}</p>
+                      <button class="btn btn-default" (click)="isCollapsed = !isCollapsed">{{"SEE_MORE" | translate }}</button>
+                    </div>
+                    <div [collapse]="isCollapsed" class="col-lg-4" >
+                      <div class="">
+                        <ul>
+                          <li *ngIf="request.requestFrom.email" class=""><i class="fa fa-envelope-o text-center" aria-hidden="true"></i>  {{request.requestFrom.email}}</li>
+                          <li *ngIf="request.requestFrom.address" class=""><i class="fa fa-map-marker text-center" aria-hidden="true"></i>  {{request.requestFrom.address}}</li>
+                          <li *ngIf="request.requestFrom.phone" class=""><i class="fa fa-mobile text-center" aria-hidden="true"></i>  {{request.requestFrom.phone}}</li>
+                        </ul> 
+                      </div>
+              　    </div>
+                  </accordion-group>
+                  <br>
+                  <accordion-group #group>
+                    <div accordion-heading>
+                      Requested Item
+                      <i class="pull-right float-xs-right glyphicon"
+                        [ngClass]="{'glyphicon-chevron-down': group?.isOpen, 'glyphicon-chevron-right': !group?.isOpen}"></i>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-4">
+                        <img [src]="request.requestedItem.itemImageUrl" class="img-responsive ">
+                        <p class="lead"> {{request.requestedItem.itemName}}</p>
+                      </div>
+                      <div class="col-lg-4">
+                        <p>{{request.requestFrom.displayName}} requested your {{request.requestedItem.itemName}}</p>
+                        <p>{{"FOR" | translate}} {{request.requestEnds | amDifference: request.requestStarts :'days' : true}} days</p>
+                        <p>{{"FROM" | translate}}: {{request.requestStarts.date}}/{{request.requestStarts.months + 1}}/{{request.requestStarts.years}}</p>
+                        <p>{{"TO" | translate}}: {{request.requestEnds.date}}/{{request.requestEnds.months + 1}}/{{request.requestEnds.years}}</p>
+                        
+                      </div>
+                    </div>
+                  </accordion-group>
+                </accordion>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-lg-4 well">
-            <div class="panel panel-default">
-              <div class="row">
-              <div class="panel-heading">
-                <div class="col-lg-4">
-                  <img class="img-responsive img-circle" [src]="request.requestFrom.photoUrl">
-                </div>
-                <div class="col-lg-8">
-                  <p class="lead">{{request.requestFrom.displayName}}</p>
-                  <button class="btn btn-default" (click)="isCollapsed = !isCollapsed">{{"SEE_MORE" | translate }}</button>
-                </div>
-                
+      </ng-container>
+      <!--if the request was declined-->
+      <ng-container *ngIf="request.status === 2"> 
+        <div *ngIf="isDeclinedRequestModalShown" [config]="{ show: true }" (onHidden)="onHidden()" bsModal #declinedRequestModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog modal-md">
+            <div class="modal-content" style="overflow: hidden">
+              <div class="modal-header">
+                <h4 class="modal-title pull-left">You declined this request</h4>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="hideModal()">
+                  <span aria-hidden="true">&times;</span>
+                </button>
               </div>
+              <div class="modal-body">
+                <!-- <div *ngIf="showAlert || !(requestStatus != 2)">
+                  <alert type="danger" dismissible="true">
+                    please change status to either open or accepted
+                  </alert>
+                </div> -->
+                <div class="col-lg-9">
+                  <p class="lead">
+                    Think about changing this request status.
+                  </p>
+                </div>
+                <div class="col-lg-3">
+                  <select class="form-control" id="select" name="requestStatus" [(ngModel)]="requestStatus">
+                    <option value="2">Declined</option>
+                    <option value="0">Open</option>
+                    <option value="3">Accepted</option>
+                  </select>
+                </div>
               </div>
               <hr>
-              <div [collapse]="isCollapsed" >
-                <div class="panel-body row">
-                  <ul>
-                    <li><i class="fa fa-envelope-o" aria-hidden="true"></i></li>
-                    <li><i class="fa fa-map-marker " aria-hidden="true"></i></li>
-                    <li><i class="fa fa-mobile" aria-hidden="true"></i></li>
-                  </ul> 
+              <div class="modal-footer">
+                <div class="">
+                  <button class="btn btn-warning" (click)="cancelBtnClicked()">cancel </button>
+                  <button class="btn btn-danger" (click)="staticModal.show(); ">Change Status</button>
                 </div>
-                <!-- <div class="panel-footer">
-                    <button class="btn btn-default pull-right">Message</button>
-                </div> -->
+
               </div>
 
             </div>
           </div>
-          <div class="col-lg-7 col-lg-offset-1 well">
-            <div class="row">
-              <div class="col-lg-6">
-                <img [src]="request.requestedItem.itemImageUrl" class="img-responsive ">
-                <p class="lead"> {{request.requestedItem.itemName}}</p>
+
+        </div>
+        <div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}"
+            tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title pull-left"></h4>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="staticModal.hide()">
+                  <span aria-hidden="true">&times;</span>
+                </button>
               </div>
-              <div class="col-lg-6">
-                <p>{{request.requestFrom.displayName}} requested your {{request.requestedItem.itemName}}</p>
-                <p>{{"FOR" | translate}} {{request.requestEnds | amDifference: request.requestStarts :'days' : true}} days</p>
-                <p>{{"FROM" | translate}}: {{request.requestStarts.date}}/{{request.requestStarts.months + 1}}/{{request.requestStarts.years}}</p>
-                <p>{{"TO" | translate}}: {{request.requestEnds.date}}/{{request.requestEnds.months + 1}}/{{request.requestEnds.years}}</p>
-                
+              <div class="modal-body" style="overflow:hidden">
+                <div *ngIf="requestStatus == 2">
+                  <p class="lead">please change status to either open or accepted</p>
+                </div>
+                <div *ngIf="requestStatus == 0 || requestStatus == 3">
+                  <div>
+                    <p class="lead">
+                      are you sure you want to change the status of this request?
+                    </p>
+                  </div>
+                  <div class="pull-right">
+                    <button class="btn btn-warning " (click)="staticModal.hide()">No</button>
+                    <button class="btn btn-danger" (click)="changeStatus()">Yes</button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-12 well">
-           <div class="panel panel-default">
-              <div class="panel-heading">
-                <p class="lead">Scheduling</p>
-              </div>
-              <div class="panel-body">
-                Scheduling form comes here
-              </div>
-              <div class="panel-footer">
-                <button class="btn btn-primary">submit</button>
-              </div>
-           </div>
-          </div>
-        </div>
-      </ng-container>
-      <ng-container *ngIf="request.status === 2">
-        <div>
-          this is a declined request
         </div>
       </ng-container>
       
@@ -171,12 +260,15 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title pull-left">{{"REQUEST_DECLINE" | translate}}</h5>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="declineModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
 
       <div class="modal-footer">
         <div class="">
           <button class="btn btn-default" (click)="declineModal.hide()">{{"CANCEL" | translate}}</button>
-          <button class="btn btn-primary"(click)="declineRequest()">{{"OK" | translate}}}</button>
+          <button class="btn btn-primary"(click)="declineRequest()">{{"OK" | translate}}</button>
         </div>
       </div>
     </div>
