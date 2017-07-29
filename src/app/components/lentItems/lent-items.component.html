@@ -1,5 +1,10 @@
 <div class="main">
   <div class="container">
-    <h2>Lent items</h2>
+    <div class="row" *ngIf="lentItems">
+      <div class="col-lg-3" *ngFor="let item of lentItems">
+        <img [src]="item.itemImageUrl" class="img-responsive">
+        <p class="lead">{{item.itemName}}</p>
+      </div>
+    </div>
   </div>
 </div>

@@ -16,6 +16,7 @@ export class FirebaseService {
   items: FirebaseListObservable<Item[]>;
   myItems: Item[];
   borrowedItems: Item[];
+  lentItems: Item[];
   users: FirebaseListObservable<User[]>;
   requests: FirebaseListObservable<Request[]>;
 
@@ -105,6 +106,17 @@ export class FirebaseService {
       }
     });
     return this.borrowedItems;
+  }
+  getLentItems(userId: string) {
+    this.lentItems = [];
+    this.getRequests().subscribe(requests => {
+      for (const entry of requests) {
+        if (entry.requestedItem.itemOwner.userUid === userId && entry.status === 3 ) {
+          this.lentItems.push(entry.requestedItem);
+        }
+      }
+    });
+    return this.lentItems;
   }
   getCategories() {
     this.categories = this._db.list('/categories') as

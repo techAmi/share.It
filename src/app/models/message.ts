@@ -3,4 +3,5 @@ export interface Message {
   $key?: string;
   body: string;
   sender: User;
+  sentAt: Date
 }

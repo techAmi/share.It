@@ -1,27 +1,15 @@
 <div class="main">
   <div class="container">
-    <div class="jumbotron">
-      <p>filter your borrowed items</p>
-    </div>
-
     <div class="row " *ngIf="borrowedItems">
-      <div class="col-lg-4" *ngFor="let item of borrowedItems">
+      <div class="col-lg-3 col-xs-6" *ngFor="let item of borrowedItems">
         <div class="thumbnail">
-          <img [src]="item.itemImageUrl" alt="" class="img-responsive">
-          <div class="caption">
-            <h4><a href="#">{{item.itemName}}</a></h4>
-            <img [src]="item.itemOwner.photoUrl" class="img-responsive img-circle pull-right" style="height: 40px" >
-            <div class="row">
-              <p>Item details</p>
+          <a [popover]="popTemplate" popoverTitle=""  placement="right" triggers="mouseenter:click">
+            <img [src]="item.itemImageUrl" alt="" class="img-responsive">
+            <div class="caption">
+              <h4><a href="#">{{item.itemName}}</a></h4>
             </div>
-          </div>
-
-          <div class="space-ten"></div>
-          <div class="btn-ground text-center">
-            <button type="button" class="btn btn-success">Borrow Again</button>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#product_view">Write a Review</button>
-          </div>
-          <div class="space-ten"></div>
+          </a>
+          <template #popTemplate><borrowed-item [item]="item"></borrowed-item></template>
         </div>
       </div>
     </div>

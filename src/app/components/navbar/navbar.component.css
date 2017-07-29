@@ -75,5 +75,19 @@ a {
     .dropdown-content {
         margin-left: 0;
     }
+    .breadCrumb{
+        margin-top: 1.8em !important; 
+        margin-left: 2em !important;
+        font-size: inherit !important;
+        float: left !important;
+        
+    }
 
+}
+
+.breadCrumb{
+    margin-top: 2px;
+    margin-left: 3em;
+    font-size: 3em;
+    float: right;
 }

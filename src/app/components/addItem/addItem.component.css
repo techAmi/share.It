@@ -1,7 +1,7 @@
 .main {
-  padding-top: 10em;
+  padding-top: 7em;
   background-color: rgb(202, 235, 247);
-  height: 100vh;
+  
 }
 .well {
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);

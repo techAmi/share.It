@@ -16,6 +16,7 @@ export class OutcomingRequestComponent implements OnInit {
   public isAcceptedRequestModalShown = false;
   public isOpenRequestModalShown = false;
   public hideMessageBtn = false;
+  public msgVal = '';
   constructor(
     private _route: ActivatedRoute,
     private _router: Router,
@@ -55,7 +56,11 @@ export class OutcomingRequestComponent implements OnInit {
   messageBtnclicked() {
     this.hideMessageBtn = false;
   }
-
+  sendMessage(msg: string) {
+    console.log('message to send ', msg);
+    this._firebaseService.appendMessage(msg, this.request.requestedItem.itemOwner);
+    this.msgVal = '';
+    }
   goToUser() {
     this._router.navigate(['user/' + this.request.requestedItem.itemOwner.userUid]);
   }

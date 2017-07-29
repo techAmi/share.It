@@ -35,113 +35,182 @@ const appRouters: Routes = [
 
     {
         path: 'lender',
-        component: LenderComponent
+        component: LenderComponent,
+        data: {
+            breadCrumb: 'Lender'
+        }
     },
 
     {
         path: 'login',
-        component: LoginComponent
+        component: LoginComponent,
+         data: {
+            breadCrumb: 'Login'
+        }
     },
 
     {
         path: 'signout',
-        component: SignoutComponent
+        component: SignoutComponent,
+         data: {
+            breadCrumb: 'Logout'
+        }
     },
 
 
     {
         path: 'about',
-        component: AboutComponent
+        component: AboutComponent,
+         data: {
+            breadCrumb: 'About'
+        }
     },
 
     {
         path: 'faq',
-        component: FaqComponent
+        component: FaqComponent,
+        data: {
+            breadCrumb: 'FAQ'
+        }
     },
 
     {
         path: 'dashboard',
-        component: DashboardComponent
+        component: DashboardComponent,
+        data: {
+            breadCrumb: 'Dashboard'
+        }
     },
 
     {
         path: 'messages',
-        component: MessagesComponent
+        component: MessagesComponent,
+        data: {
+            breadCrumb: 'Messages'
+        }
     },
 
     {
         path: 'addItem',
-        component: AddItemComponent
+        component: AddItemComponent,
+        data: {
+            breadCrumb: 'Add Item'
+        }
     },
     {
         path: 'upload-successfull',
-        component: UploadSuccessfullComponent
+        component: UploadSuccessfullComponent,
+         data: {
+            breadCrumb: 'Add Item'
+        }
     },
     {
         path: 'my-items',
-        component: MyItemsComponent
+        component: MyItemsComponent,
+         data: {
+            breadCrumb: 'My Items'
+        }
     },
     {
         path: 'items/:id',
-        component: ItemComponent
+        component: ItemComponent,
+         data: {
+            breadCrumb: 'Items'
+        }
     },
 
     {
         path: 'user/:id',
-        component: UserDetailsComponent
+        component: UserDetailsComponent,
+        data: {
+            breadCrumb: 'User'
+        }
     },
     {
         path: 'incomingRequests/:id',
-        component: IncomingRequestComponent
+        component: IncomingRequestComponent,
+        data: {
+            breadCrumb: 'Incoming Requests'
+        }
     },
     {
         path: 'outcomingRequests/:id',
-        component: OutcomingRequestComponent
+        component: OutcomingRequestComponent,
+        data: {
+            breadCrumb: 'Outcoming Requests'
+        }
     },
 
     {
         path: 'requests',
-        component: RequestsComponent
+        component: RequestsComponent,
+        data: {
+            breadCrumb: 'Requests'
+        }
     },
 
     {
         path: 'messages/chatRoom/:id',
-        component: ChatRoomComponent
+        component: ChatRoomComponent,
+        data: {
+            breadCrumb: 'Messages'
+        }
     },
 
     {
         path: 'reviews',
-        component: ReviewsComponent
+        component: ReviewsComponent,
+        data: {
+            breadCrumb: 'Reviews'
+        }
     },
 
     {
         path: 'borrowedItems',
-        component: BorrowedItemsComponent
+        component: BorrowedItemsComponent,
+        data: {
+            breadCrumb: 'Borrowed Items'
+        }
     },
 
     {
         path: 'lentItems',
-        component: LentItemsComponent
+        component: LentItemsComponent,
+        data: {
+            breadCrumb: 'Lent items'
+        }
     },
 
     {
         path: 'profile',
-        component: ProfileComponent
+        component: ProfileComponent,
+        data: {
+            breadCrumb: 'Profile'
+        }
     },
 
     {
         path: 'edit-profile',
-        component: EditProfileComponent
+        component: EditProfileComponent,
+        data: {
+            breadCrumb: 'Profile'
+        }
     },
 
     {
         path: 'search/:keyword',
-        component: SearchComponent
+        component: SearchComponent,
+        data: {
+            breadCrumb: 'Search'
+        }
     },
 
     {
         path: 'categories/:category',
-        component: CategoriesComponent
+        component: CategoriesComponent,
+        data: {
+            breadCrumb: 'Categories'
+        }
     }
 
 

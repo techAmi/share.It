@@ -7,6 +7,7 @@ import { HttpModule, Http } from '@angular/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { AlertModule } from 'ngx-bootstrap';
+import { PopoverModule } from 'ngx-bootstrap';
 import { AccordionModule } from 'ngx-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
@@ -36,7 +37,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { SearchComponent } from './components/search/search.component';
 import { CategoriesComponent } from './components/categories/categories.component';
-
+import { BorrowedItemComponent } from './components/borrowedItems/borrowed-item-template.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { FormsModule } from '@angular/forms';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -96,6 +97,7 @@ export function HttpLoaderFactory(http: Http) {
     ChatRoomComponent,
     ReviewsComponent,
     BorrowedItemsComponent,
+    BorrowedItemComponent,
     LentItemsComponent,
     ProfileComponent,
     EditProfileComponent,
@@ -108,6 +110,7 @@ export function HttpLoaderFactory(http: Http) {
     routing,
     FormsModule,
     MomentModule,
+    PopoverModule.forRoot(),
     AlertModule.forRoot(),
     ModalModule.forRoot(),
     TabsModule.forRoot(),

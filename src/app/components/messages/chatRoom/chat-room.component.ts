@@ -32,10 +32,12 @@ export class ChatRoomComponent {
   }
 
   sendMessage(msg: string) {
+    console.log('the message sent at ', Date.now());
     this.messages.push(
       {
         body: msg,
-        sender: this._as.getUserInformation() // the sender is the current user logged in
+        sender: this._as.getUserInformation(), // the sender is the current user logged in
+        sentAt: Date.now()
       }
     );
     this.msgVal = '';
