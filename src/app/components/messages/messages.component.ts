@@ -44,7 +44,6 @@ export class MessagesComponent implements OnInit {
     });
 
     this.currentUserChatRooms.forEach( chatRoom => {
-      console.log('the message thread, ', chatRoom.messagesThread);
       this.chatElements.push(
         {
           lastMessage: chatRoom.messagesThread[Object.keys(chatRoom.messagesThread)[Object.keys(chatRoom.messagesThread).length - 1]],
@@ -52,7 +51,6 @@ export class MessagesComponent implements OnInit {
         }
       )
     });
-    console.log('chat elements ', this.chatElements);
     // TODO: Fix this later
     // this.currentUserChatRooms.forEach(chatroom => {
     //   this.lastMessages.push(this._firebaseService.getLastMessage(chatroom.$key));

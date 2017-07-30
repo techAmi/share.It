@@ -24,6 +24,5 @@ export class RequestsComponent {
       this.requests = requests;
     })
     this.filteredRequests = this._firebaseService.filterRequests();
-    console.log('requests made to me ', this.filteredRequests )
   }
 }

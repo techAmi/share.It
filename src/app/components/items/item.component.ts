@@ -69,9 +69,6 @@ export class ItemComponent implements OnInit {
         } else {
             this._router.navigate(['/login']);
         }
-        console.log('request to send ', this.itemRequestForm);
-        console.log('request made ', this.request);
-        console.log('send request button was clicked');
 
     }
 }

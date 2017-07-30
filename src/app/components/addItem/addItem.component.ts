@@ -48,12 +48,10 @@ export class AddItemComponent implements OnInit {
   }
   ngOnInit() {
 
-    console.log('current user ', this.currentUser);
     this._firebaseService.getCategories().
     subscribe( categories => {
       this.categories = categories;
     }, error => {
-      console.log(error);
     });
 
     this._firebaseService.getConditions().
@@ -99,7 +97,6 @@ export class AddItemComponent implements OnInit {
     if (this.isValid) {
       this.toNextStep = true; // if this form is valid go to next form
     }
-    console.log(this.addItemStep1Form);
   }
 
   imageUrlChange(event) {
@@ -124,7 +121,6 @@ export class AddItemComponent implements OnInit {
         }
       }
     }
-    console.log('form errors ', this.formStep1Errors);
   }
   // validation
   onForm2ValueChanged(data?: any) {
@@ -161,7 +157,6 @@ export class AddItemComponent implements OnInit {
       }
     }
     if (this.isValid) {
-      console.log('item owner ', this.currentUser);
       this.newItem = {
         itemCategory: this.addItemStep1Form.controls['itemCategory'].value ,
         itemBranche: this.addItemStep1Form.controls['itemBranche'].value,
@@ -173,7 +168,6 @@ export class AddItemComponent implements OnInit {
         itemImageUrl: this.newItemImageUrl,
       }
       this.newItem.itemOwner = this.currentUser;
-      console.log ('the new added item', this.newItem);
       this._firebaseService.addItem(this.newItem);
       this._router.navigate(['upload-successfull']);
       }

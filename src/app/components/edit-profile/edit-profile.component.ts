@@ -1,9 +1,13 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ElementRef, NgZone, ViewChild,  } from '@angular/core';
 import { Router } from '@angular/router';
 import { FirebaseService } from '../../services/firebase.service';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { CustomValidators } from 'ng2-validation';
 import { User } from '../../models/user';
+
+import { MapsAPILoader } from '@agm/core';
+import {} from '@types/googlemaps';
+
 
 @Component({
   moduleId: module.id,
@@ -17,22 +21,35 @@ export class EditProfileComponent implements OnInit {
   private updUser: User;
   public isCollapsed = true;
   private isValid = false ;
+  @ViewChild('address')
+  public addressElementref: ElementRef;
   mode = 0; // image-upaload.component receives this input 0: edit-profile.component, 1: add-item.component
   profileImgUrl: string;
   constructor(
     private _fb: FormBuilder,
     private _firebaseService: FirebaseService,
-    private _router: Router
+    private _router: Router,
+    private mapsAPILoader: MapsAPILoader,
+    private ngZone: NgZone
   ) {
     this.isCollapsed = true;
     if (this._firebaseService.getCurrentUser()) {
       this.user = this._firebaseService.getCurrentUser();
       this.profileImgUrl = this.user.photoUrl;
-      console.log(this.user);
     }
   }
 
   ngOnInit() {
+    // address google autocomplete
+    this.mapsAPILoader.load().then(() => {
+      const autocomplete = new google.maps.places.Autocomplete(this.addressElementref.nativeElement, {
+        types: ['address']
+      });
+      autocomplete.addListener('place_changed', () => {
+        this.ngZone.run(() => {
+        });
+      })
+    });
     this.editProfileFrom = this._fb.group({
       userLifeStory: new FormControl(this.user.lifeStory ? this.user.lifeStory : '', Validators.maxLength(200)),
       userBirthDate: new FormControl(this.user.birthDate ? this.user.birthDate : '', CustomValidators.date),
@@ -54,7 +71,6 @@ export class EditProfileComponent implements OnInit {
       userEmail: this.user.email ? this.user.email : '',
       userDisplayName: this.user.displayName ? this.user.displayName : ''
     });
-    console.log(this.editProfileFrom);
   }
   imageUrlChange(event) {
     this.profileImgUrl = event;
@@ -82,7 +98,6 @@ export class EditProfileComponent implements OnInit {
   updateProfile() {
     // tslint:disable-next-line:forin
     this.isValid = false;
-    console.log('these are the form errors', this.formErrors);
     for (const field in this.formErrors) {
       if (this.formErrors[field] === '') {
         this.isValid = true;
@@ -91,7 +106,6 @@ export class EditProfileComponent implements OnInit {
       }
     }
     if (!this.editProfileFrom.hasError) {
-      console.log('this is supposed to be the new image ', this.profileImgUrl);
       this.updUser = {
         email: this.editProfileFrom.controls['userEmail'].value,
         displayName: this.editProfileFrom.controls['userDisplayName'].value,
@@ -104,9 +118,7 @@ export class EditProfileComponent implements OnInit {
       }
       this._firebaseService.updateUser(this.updUser);
       this._router.navigate(['./profile']);
-      console.log('updated User', this.updUser);
     } else {
-      console.log('form is not valid');
     }
   }
 

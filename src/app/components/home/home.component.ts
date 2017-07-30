@@ -36,17 +36,14 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this._firebaseService.getCategories().subscribe( categories => {
       this.categories = categories;
-      console.log (this.categories);
       this.categories.forEach( category => {
         if (category.branches) {
-          console.log(category.branches);
           category.branches.forEach( branche => {
           this.branches.push(branche);
           })
       }
     });
     });
-    console.log(this.branches);
     // if the user is logged in delete user items from the recently added items list
     if (this._firebaseService.getCurrentUser()) {
       this.recentlyAddedItems = this._firebaseService.filterRecentlyAddedItems();
@@ -58,7 +55,6 @@ export class HomeComponent implements OnInit {
     this._dataService.branches = this.branches;
   }
   brancheClick(branche) {
-    console.log('branche was clicked', branche);
     this._dataService.category = branche;
   }
 }

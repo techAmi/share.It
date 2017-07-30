@@ -72,18 +72,14 @@ export class FirebaseService {
 
   getMyItems(userId: string) {
     this.myItems = [];
-    console.log('current user ', userId);
     this.items.subscribe(items => {
       for (const entry of items) {
-        console.log('item: ', entry);
         if (entry.itemOwner.userUid === userId) {
           this.myItemsCount++;
           this.myItems.push(entry);
         }
       }
     });
-    console.log(this.myItems);
-    console.log('>>>> my items count', this.myItemsCount);
     return this.myItems;
   }
 
@@ -131,7 +127,6 @@ export class FirebaseService {
   }
 
   addItem(item: Item) {
-    console.log('will add a new item', item);
     item.createAt = firebase.database.ServerValue.TIMESTAMP;
     return this.items.push(item);
 
@@ -268,9 +263,7 @@ export class FirebaseService {
 
   appendMessage(msg: string, receiver: User) {
     const sender = this._as.getUserInformation() as User;
-    console.log('this is the sender', sender);
     this.chatRoom = this.getChatRoom(sender, receiver);
-    console.log('the already existing chat room', this.chatRoom);
     let newChatRoom: ChatRoom;
     let message: Message;
     newChatRoom = {
@@ -279,7 +272,8 @@ export class FirebaseService {
     }
     message = {
       sender: sender,
-      body: msg
+      body: msg,
+      sentAt: Date.now()
     }
 
     newChatRoom.users.push(sender, receiver);

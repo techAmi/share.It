@@ -19,12 +19,10 @@ export class MyItemsComponent implements OnInit {
     private _as: AuthService) {
       this.userId = this._as.getUserInformation().userUid;
       this.myItems = this._fb.getMyItems(this.userId);
-      console.log('?????? my items', this.myItems);
   }
 
   ngOnInit() {
   }
   editItem(item: Item) {
-    console.log('will edit this item: ', item);
   }
 }

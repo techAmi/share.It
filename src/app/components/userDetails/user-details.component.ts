@@ -48,17 +48,14 @@ export class UserDetailsComponent {
     }
 
     sendMessage(msg: string) {
-        console.log('message to send ', msg);
         this._firebaseService.appendMessage(msg, this.user);
         this.msgVal = '';
 
     }
     messageBtnClicked() {
         // check if user is logged in before sending message
-        console.log('message btn was clicked');
         // user is not logged in
         if (!this._as.getUserInformation()) {
-            console.log('user not logged in');
             this._router.navigate(['login']);
         } else {
             this.hideMessageBtn = false; // if the button was clicked and user is logged in hide msg button

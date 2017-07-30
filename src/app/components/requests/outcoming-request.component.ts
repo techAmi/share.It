@@ -28,7 +28,6 @@ export class OutcomingRequestComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('route params ', this._route.params);
     this._route.params.map(params => params['id'])
     .subscribe( id => {
       this._firebaseService.getRequests()
@@ -57,7 +56,6 @@ export class OutcomingRequestComponent implements OnInit {
     this.hideMessageBtn = false;
   }
   sendMessage(msg: string) {
-    console.log('message to send ', msg);
     this._firebaseService.appendMessage(msg, this.request.requestedItem.itemOwner);
     this.msgVal = '';
     }

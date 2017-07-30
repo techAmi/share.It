@@ -26,13 +26,11 @@ export class SearchComponent implements OnInit {
                       this._firebaseService.searchItems(keyword)
                       .subscribe(items => {
                         this.searchedItems = items;
-                        console.log('item found ', this.searchedItems)
                       })
                     });
   }
 
   searchItem(searchWord: string)  {
-    console.log('the search word ', searchWord);
     this._firebaseService.searchItems(searchWord)
     .subscribe(items => {
       this.searchedItems = items;

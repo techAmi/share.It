@@ -28,11 +28,9 @@ export class ChatRoomComponent {
       this.messages = this._firebaseService.getMessages(id);
     });
 
-    console.log('this is the chat room', this.chatRoom);
   }
 
   sendMessage(msg: string) {
-    console.log('the message sent at ', Date.now());
     this.messages.push(
       {
         body: msg,

@@ -15,7 +15,6 @@ export class BorrowedItemComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log(this.item);
     }
 
     toUser() {
@@ -23,7 +22,6 @@ export class BorrowedItemComponent implements OnInit {
     }
 
     borrowAgain() {
-        console.log('url', 'items/' + this.item.$key);
         this._router.navigate(['items/' + this.item.$key]);
     }
 }

@@ -10,7 +10,6 @@ export class UploadSuccessfullComponent {
 
   constructor (private _router: Router ) {}
   onAddAnotherBtnClick() {
-    console.log('add other btn was clicked');
     // this._router.navigate(['addItem']);
 
   }

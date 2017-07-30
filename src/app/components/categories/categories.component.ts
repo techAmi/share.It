@@ -23,17 +23,14 @@ export class CategoriesComponent implements OnInit {
     this._route.params.map(params => params['category'])
       .subscribe(category => {
         this.category = category;
-        console.log(this.category);
       });
     this.branche = this._dataService.category;
-    console.log('got branche via service ', this.branche.background);
 
   }
   ngOnInit() {
     this._firebaseService.getItemsByBranche(this.branche.name)
       .subscribe(items => {
         this.items = items;
-        console.log('item filtered for this category', this.items);
       });
   }
 }

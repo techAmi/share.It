@@ -41,6 +41,7 @@ import { BorrowedItemComponent } from './components/borrowedItems/borrowed-item-
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { FormsModule } from '@angular/forms';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { GoogleMapsComponent } from './utils/agm/google-maps.component';
 
 import { AuthService } from './services/auth.service';
 import { FirebaseService } from './services/firebase.service';
@@ -55,8 +56,10 @@ import { MomentModule } from 'angular2-moment';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { TabsModule } from 'ngx-bootstrap';
 import { CollapseModule } from 'ngx-bootstrap';
+import { AgmCoreModule } from '@agm/core';
 
 import { DatePickerModule } from 'angular-io-datepicker/src/datepicker/index';
+import { GoTopButtonModule } from 'ng2-go-top-button';
 import { OverlayModule } from 'angular-io-overlay';
 export const firebaseConfig = {
     apiKey: 'AIzaSyCU-xOnnDt8Elsbz_3whNAEzcS-BusKTks',
@@ -102,9 +105,11 @@ export function HttpLoaderFactory(http: Http) {
     ProfileComponent,
     EditProfileComponent,
     SearchComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    GoogleMapsComponent
   ],
   imports: [
+    GoTopButtonModule,
     HttpModule,
     BrowserModule,
     routing,
@@ -127,6 +132,11 @@ export function HttpLoaderFactory(http: Http) {
         useFactory: HttpLoaderFactory,
         deps: [Http]
       }
+    }),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDJMHUcyjKidGJAN_BbwJcTgbuSpsqpX5s',
+      libraries: ['places']
+
     }),
     AngularFireModule.initializeApp(firebaseConfig)
   ],

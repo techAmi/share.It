@@ -27,11 +27,9 @@ export class NavbarComponent implements OnInit {
     this.globalEventManager.switchNavBarEmitter.subscribe((mode) => {
       if (mode !== null ) {
         this.switchNavbar = mode;
-        console.log('the navbar mode ', this.switchNavbar)
       }
       if (this._firebaseService.getCurrentUser() != null) {
       this.profilePhotoUrl = this._firebaseService.getCurrentUser().photoUrl;
-      console.log(this.profilePhotoUrl);
     }
     });
   }
@@ -43,9 +41,7 @@ export class NavbarComponent implements OnInit {
       while (currentRoute.children[0] !== undefined ) {
         currentRoute = currentRoute.children[0];
       }
-      console.log('current route dataa', currentRoute.snapshot.data);
       this.breadCrumb = currentRoute.snapshot.data.breadCrumb;
-      console.log('the breadcrumb', this.breadCrumb);
     })
 
   }

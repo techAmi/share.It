@@ -44,9 +44,7 @@ export class EditItemComponent implements OnInit {
       this.currentUser = this._firebaseService.getCurrentUser();
   }
   ngOnInit() {
-    console.log('item key', this.itemKey);
     this.item = this._firebaseService.getItem(this.itemKey);
-    console.log('this item will be edited ', this.item);
     this._firebaseService.getCategories().subscribe( categories => {
         this.categories = categories;
       }
@@ -70,11 +68,9 @@ export class EditItemComponent implements OnInit {
     this.itemDetailsModal.show();
     this.itemImageModal.show();
     this.item = this._firebaseService.getItem(this.itemKey);
-    console.log('item to edit XXXX', this.item);
   }
 
   onCancelBtnClick() {
-    console.log(this.itemKey);
     this.itemDetailsModal.hide();
     this.itemImageModal.hide();
   }
@@ -91,12 +87,10 @@ export class EditItemComponent implements OnInit {
       itemModel: this.editItemDetailsForm.controls['itemModel'].value,
       itemOwner: this.currentUser
     }
-    console.log(this.updItem);
     this._firebaseService.updateItem(this.itemKey, this.updItem);
   }
 
   deleteItem() {
-    console.log('element of key  ' + this.itemKey + ' will be deleted');
     this._firebaseService.deleteItem(this.itemKey);
     this.onCancelBtnClick();
   }

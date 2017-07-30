@@ -26,11 +26,9 @@ export class DashboardComponent implements OnInit {
     private _firebaseService: FirebaseService
    ) {
     this.userId = this.as.getUserInformation().userUid;
-    console.log('THE USER ID >>>>>>', this.userId);
    }
   ngOnInit() {
     this.myItemsCount = this._firebaseService.myItemsCount;
-    console.log('my items count', this.myItemsCount);
   }
 
 }

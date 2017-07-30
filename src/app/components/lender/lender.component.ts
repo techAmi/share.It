@@ -13,7 +13,6 @@ export class LenderComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('current user', this._as.getCurrentUser());
-    console.log('user information ', this._as.getUserInformation());
+
   }
 }

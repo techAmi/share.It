@@ -42,11 +42,9 @@ export class IncomingRequestComponent implements OnInit {
         })
       })
     });
-    console.log('request ', this.request);
   }
 
   declineRequest() {
-    console.log('decline button was clicked');
     this.request.status = 2; // requeest declined
     this._firebaseService.updateRequest(this.request.$key, this.request);
   }
@@ -67,7 +65,6 @@ export class IncomingRequestComponent implements OnInit {
   }
 
   sendMessage(msg: string) {
-    console.log('message to send ', msg);
     this._firebaseService.appendMessage(msg, this.request.requestFrom);
     this.msgVal = '';
   }
@@ -76,7 +73,6 @@ export class IncomingRequestComponent implements OnInit {
     this._router.navigate(['requests']);
   }
   changeStatus() {
-    console.log('the status ', this.requestStatus);
     if (this.requestStatus == 2) {
       return;
     } else if (this.requestStatus == 3 || this.requestStatus == 0) {
@@ -84,7 +80,6 @@ export class IncomingRequestComponent implements OnInit {
       this._firebaseService.updateRequest(this.request.$key, this.request);
       this._router.navigate(['requests']);
     }
-    console.log('request after update', this.request);
   }
 
 

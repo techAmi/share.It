@@ -53,7 +53,6 @@ export class AuthService {
   authenticate() {
     this.afAuth.authState.subscribe(res => {
       if (res && res.uid) {
-        console.log('user is logged in');
         this.isLoggedIn = true;
       } else {
         this.isLoggedIn = false;
@@ -65,7 +64,6 @@ export class AuthService {
   getUserInformation () {
     const user = this.getCurrentUser();
     if (user != null) {
-      console.log('logged in user is ', user);
       this.isLoggedIn = true;
       return {
         displayName: user.displayName,
@@ -85,7 +83,6 @@ export class AuthService {
       this.router.navigate(['']);
       this.addUser();
     });
-    console.log('logging with google');
   }
 
   loginWithFacebook() {
@@ -95,21 +92,17 @@ export class AuthService {
       this.router.navigate(['']);
       this.addUser();
     });
-    console.log('logging with facebook');
   }
 
   loginWithTwitter() {
     const provider = new firebase.auth.TwitterAuthProvider();
     this.afAuth.auth.signInWithPopup(provider).then( data => {
       this.globalEventManager.switchNavBar(true);
-      console.log(data);
       this.router.navigate(['']);
       this.addUser();
     },
     error => {
-      console.log('an error has occured ', error);
     });
-    console.log('logging with twitter');
   }
 
   logout() {

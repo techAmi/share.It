@@ -19,6 +19,5 @@ export class BorrowedItemsComponent {
     let userUid: string;
     userUid = this._authService.getUserInformation().userUid;
     this.borrowedItems = this._firebaseService.getBorrowedItems(userUid);
-    console.log('these are the borrowed items', this.borrowedItems);
   }
 }

@@ -51,24 +51,18 @@ export class UploadComponent implements OnInit {
                 this.folder = _as.getUserInformation().userUid;
   }
   ngOnInit() {
-    console.log('this is the mode of the parent component ', this.mode);
     if (this.mode === 0) {
-      console.log('the parent component is profile edit');
       document.getElementById('image-preview').hidden = false;
     } else {
-      console.log('some other parent component');
       document.getElementById('image-preview').hidden = true;
     }
   }
 
   changeListener() {
-    console.log ('new values for folder');
     const storage = firebase.storage();
-    console.log('storage', storage);
 
     this.fileList = this._af.list(`/${this.folder}/images`) as
     FirebaseListObservable<Image[]>;
-    console.log('rendering all images in ', `/${this.folder}/images`);
     this.ImageList = this.fileList.map( itemList =>
       itemList.map( item => {
         const pathReference = storage.ref(item.path);
@@ -76,10 +70,8 @@ export class UploadComponent implements OnInit {
         const result = {$key: item.$key, downloadUrl: pathReference.getDownloadURL(), path: item.path, filename: item.filename};
         this.image.$key = result.$key;
         this.image.path = result.path;
-        console.log (result);
         return result;
       }));
-      console.log(this.ImageList);
   }
   // upload an item photo
   upload() {
@@ -92,27 +84,23 @@ export class UploadComponent implements OnInit {
     }
     // this.changeListener();
     // Create a root reference
-    console.log ('firebase app ', firebase);
     const storageRef = firebase.storage().ref();
     const success = false;
 
     // this currently only grabs item 0 refactor it to grab them all
     for (const selectedFile of [(<HTMLInputElement>document.getElementById('file')).files[0]]) {
-            console.log(selectedFile);
             // Make local copies of services because "this" will be clobbered
             const router = this._router;
             const af = this._af;
             const folder = this.folder;
             const path = `/${this.folder}/${selectedFile.name}`;
             this.imagePath = path;
-            console.log('path ', path );
 
             const iRef = storageRef.child(path);
 
             iRef.put(selectedFile).then((snapshot) => {
               this.imageUrl = snapshot.downloadURL;
               this.emitImageUrl.emit(this.imageUrl);
-              console.log('image url ', this.imageUrl);
               document.getElementById('upload-image').hidden = true;
                 // console.log('Uploaded a blob or file! Now storing the reference at', `/${this.folder}/images/`);
                 // af.list(`/${folder}/images/`).push({ path: path, filename: selectedFile.name })
