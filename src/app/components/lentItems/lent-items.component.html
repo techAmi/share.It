@@ -6,5 +6,10 @@
         <p class="lead">{{item.itemName}}</p>
       </div>
     </div>
+    <div class="row" *ngIf="lentItems.length === 0">
+      <div class="col-lg-12 col-xs-12">
+        <p class="lead"> {{"NO_LENT_ITEMS" | translate}}</p>
+      </div>
+    </div>
   </div>
 </div>

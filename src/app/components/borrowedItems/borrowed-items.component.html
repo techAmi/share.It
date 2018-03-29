@@ -13,5 +13,8 @@
         </div>
       </div>
     </div>
+    <div class="row" *ngIf="borrowedItems.length === 0">
+      <p class="lead" style="margin-top:30%">You have no borrowed items. Explore <a routerLink="/search/ ">share.it?</a></p>
+    </div>
   </div>
 </div>

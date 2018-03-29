@@ -38,6 +38,11 @@
               </a>
             </div>
           </div>
+          <div class="row" *ngIf="filteredRequests.incomingRequests.length === 0">
+            <div class="col-lg-12 col-lg-xs text-center">
+              <p class="lead">You didn't receive any requests.</p>
+            </div>
+          </div>
         </tab>
         <tab heading="{{'YOUR_REQUESTS' | translate}}">
            <hr style="border-top: 0">
@@ -68,6 +73,11 @@
                   </ng-container>
                 </div>
                 </a>
+              </div>
+            </div>
+            <div class="row" *ngIf="filteredRequests.outcomingRequests.length === 0">
+              <div class="col-lg-12 col-lg-xs text-center">
+                <p class="lead">You still didn't make any requests. explore <a routerLink="/search/ ">share.it?</a></p>
               </div>
             </div>
         </tab>

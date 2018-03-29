@@ -18,7 +18,7 @@
                 <!--Item name-->
                   <div class="form-group">
                     <label class="control-label text-primary" for="inputLarge">{{"ITEM_NAME" | translate}}</label>
-                    <input class="form-control input-lg" type="text" id="inputLarge" placeholder="name your item" formControlName="itemName">
+                    <input class="form-control input-lg" type="text" id="inputLarge" placeholder="{{'NAME_YOUR_ITEM' | translate}}" formControlName="itemName">
                   </div>
                   <div *ngIf="formStep1Errors.itemName" class="alert alert-danger" role="alert">
                     <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
@@ -28,7 +28,7 @@
                 <!--Item original price-->
                   <div class="form-group">
                     <label class="control-label text-primary" for="inputLarge">{{"ORIGINAL_PRICE" | translate}}</label>
-                    <input class="form-control input-lg" type="text" id="inputLarge" placeholder="tell us your item's original price" formControlName="itemOriginalPrice">
+                    <input class="form-control input-lg" type="text" id="inputLarge" placeholder="{{'ITEM_ORIGINAL_PRICE' | translate}}" formControlName="itemOriginalPrice">
                   </div>
                   <div *ngIf="formStep1Errors.itemOriginalPrice" class="alert alert-danger" role="alert">
                     <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
@@ -102,7 +102,7 @@
               <div *ngIf="!isValid" class="alert alert-danger" role="alert">
                 <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                 <span class="sr-only">Error:</span>
-                Your form is not valid. Make sure required fields are not empty.
+                  {{"FORM_ERROR" | translate}}
               </div>
             <!--step one form-->
             <form [formGroup]="addItemStep2Form">

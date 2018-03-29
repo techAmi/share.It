@@ -16,9 +16,16 @@
       </div>
     </div>
   </div>
+  <div class="container">
+    <div class="row" *ngIf="myItems.length == 0">
+      <div class="col-lg-12 col-xs-12">
+        <p class="lead " style="margin-top:30%"> Uh oh! You have no items listed :( Let's add <a routerLink="/addItem">something?</a></p>
+      </div>
+    </div>
+  </div>
 </div>
 
-<go-top-button [html]="'<i class=\'fa fa-arrow-up\'></i>'"
+<go-top-button *ngIf="myItems.length !== 0" [html]="'<i class=\'fa fa-arrow-up\'></i>'"
                  [animate]="true"
                  [speed]="50"
                  [acceleration]="2"

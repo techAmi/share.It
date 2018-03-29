@@ -90,5 +90,20 @@
   "CONFIRM_LOGOUT":"Are you sure you want to logout?",
   "ITEMS":"Items",
   "LANGUAGE":"ENGLISH",
-  "BRANCHE":"Branche"
+  "BRANCHE":"Branche",
+  "RENTALS": "rentals",
+  "CATEGORIES_NO_ITEMS":"Oops! No items in this category yet.",
+  "FORM_ERROR":"Your form is not valid. Make sure required fields are not empty.",
+  "NAME_YOUR_ITEM":"name your item",
+  "ITEM_ORIGINAL_PRICE":"tell us your item's original price",
+  "BORROW_AGAIN":"Borrow Again",
+  "WRITE_REVIEW":"Write review",
+  "FULL_NAME":"first and last name",
+  "LIFE_STORY_MAXLENGTH":"in 200 words or less",
+  "ENTER_ADDRESS":"enter your address",
+  "EMAIL_PLACEHOLDER":"email",
+  "BRAND":"Brand",
+  "MODEL": "Model",
+  "NO_LENT_ITEMS":"You have no lent items.",
+  "NO_REVIEWS":"You have no reviews."
 }
